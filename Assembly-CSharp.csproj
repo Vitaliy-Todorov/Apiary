@@ -64,10 +64,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Entities\Bees\Bee.cs" />
+    <Compile Include="Assets\Scripts\Entities\Bees\MotionBee.cs" />
+    <Compile Include="Assets\Scripts\Entities\Flowers\Flowers.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\GeneratingObject.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\IHoneyGetter.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\IHoneyGiver.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\Motion.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\MotionInput.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Motion\MoveTo.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\RotationInput.cs" />
-    <Compile Include="Assets\Scripts\General events and actions\Spawner.cs" />
+    <Compile Include="Assets\Scripts\Parameters\Bees\BeesParameters.cs" />
+    <Compile Include="Assets\Scripts\Parameters\Flowers\FlowerParameters.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Game_development/Project/Apiary/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

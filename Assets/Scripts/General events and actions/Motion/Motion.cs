@@ -4,7 +4,7 @@ public class Motion : MonoBehaviour
 {
     public void Move(Vector3 movement, float speed)
     {
-        transform.Translate(movement * speed * Time.fixedDeltaTime, Space.World);
+        transform.Translate(movement.normalized * speed * Time.fixedDeltaTime, Space.World);
     }
 
     public void Teleportation(Vector3 positionTeleportation, Vector3 normalTeleportation)
