@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bee : MonoBehaviour
 {
+    public GameObject _hiveThisBee;
+
     void Start()
     {
         gameObject.AddComponent<MotionBee>();

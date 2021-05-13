@@ -1,79 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class MotionBee : Motion, IHoneyGetter
 {
     [SerializeField]
     BeesParameters parameters;
-
+    [SerializeField]
     float сurrentHoneyStocks = 0;
 
     List<GameObject> HoneyGivers;
+    GameObject _hiveThisBee;
+    MovementStateBee movementState;
 
     private IEnumerator coroutine;
-
-    delegate void Movement();
 
     private void Start()
     {
         HoneyGivers = new List<GameObject>();
+
+        movementState = gameObject.AddComponent<MovementStateBee>();
+        movementState.OnEnter(parameters.speed, "Honey");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //Если объект может давать мёд, то берём его
         IHoneyGiver honeyGiver = collision.gameObject.GetComponent<IHoneyGiver>();
+
         if (honeyGiver is IHoneyGiver)
         {
             coroutine = HoneyGet(honeyGiver, parameters.getHoneyTime);
             StartCoroutine(coroutine);
+            movementState.OnExit();
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        //Здесь нужно написать отключение поглощения мёда
-    }
-
-    private void FixedUpdate()
-    {
-        Move(MinDistanceToFlowers(Flowers.allFlowers), parameters.speed);
-    }
+    /*
+        public void X(GameObject y)
+        {
+            IHoneyGiver honeyGiver = y.GetComponent<IHoneyGiver>();
+            coroutine = HoneyGet(honeyGiver, parameters.getHoneyTime);
+            StartCoroutine(coroutine);
+            movementState.OnExit();
+        }*/
 
     public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)
     {
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
-
             //Проверяем может ли пчела ещё взять мёд и наличие объекта у которого мы хотим взять мёд
             if (сurrentHoneyStocks < parameters.maxHoneyStocks && !honeyGiver.Equals(null))
-            {
-                сurrentHoneyStocks +=
-                    honeyGiver.HoneyGive(gameObject, parameters.getHoney);
-            } 
-        }
-    }
+                try
+                {
+                    сurrentHoneyStocks +=
+                        honeyGiver.HoneyGive(gameObject, parameters.getHoney);
+                }
+                catch
+                {
+                    movementState.OnEnter("Honey");
+                }
 
-    Vector3 MinDistanceToFlowers(List<GameObject> distanceTo)
-    {
-        Vector3 distanceToFlower = new Vector3();
-        Vector3 minDistanceToFlower = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-
-        foreach (GameObject flower in distanceTo)
-        {
-            //Проверяем свободен ли цветок
-            if (flower.GetComponent<Flowers>().canCollectHoney)
+            //Проверяем существует ли дающий мёд и проверяем наличие свободных мест, если нет, дальше ищем мёд
+            if (honeyGiver.Equals(null))
             {
-                //Ищем самый близкий цветок
-                distanceToFlower = flower.transform.position - transform.position;
-                if (distanceToFlower.magnitude < minDistanceToFlower.magnitude)
-                    minDistanceToFlower = distanceToFlower;
+                movementState.OnEnter("Honey");
+                yield break;
             }
-        }
+            //Проверяем заполненность хранилища мёда пчелы, если оно заполнено летим в улей Hive
+            else if (сurrentHoneyStocks >= parameters.maxHoneyStocks)
+            {
+                movementState.OnEnter("Hive");
+                yield break;
+            }
 
-        return minDistanceToFlower;
+            yield return new WaitForSeconds(waitTime);
+        }
     }
 }

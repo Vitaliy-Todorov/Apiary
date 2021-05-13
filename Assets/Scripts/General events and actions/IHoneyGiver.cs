@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IHoneyGiver
 {
+    bool CanCollectHoney();
     float HoneyGive(GameObject whosAsking, float honey);
 }
