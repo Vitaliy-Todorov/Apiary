@@ -7,7 +7,7 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 {
     public static List<GameObject> allFlowers = new List<GameObject>();
 
-    List<GameObject> honeyGetters;
+    List<GameObject> honeyGetters = new List<GameObject>();
 
     [SerializeField]
     FlowerParameters parameters;
@@ -24,7 +24,6 @@ public class Flowers : MonoBehaviour, IHoneyGiver
     {
         canCollectHoney = true;
         allFlowers.Add(gameObject);
-        honeyGetters = new List<GameObject>();
         сurrentHoneyStocks = parameters.maxHoneyStocks;
 
         coroutine = HoneyRecovery(parameters.honeyRecoveryTime);
@@ -38,7 +37,6 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("OnCollisionEnter: " + collision.gameObject);
         //Проверяем наличие свободных мест для тех кто хочет потреблять мёд
         if (collision.gameObject.GetComponent<IHoneyGetter>() is IHoneyGetter &&
             honeyGetters.Count < parameters.simultaneousUseByBees)
@@ -71,12 +69,13 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 
     public float HoneyGive(GameObject whosAsking, float honey)
     {
-        if (!(honeyGetters.Contains(whosAsking)))
+        Debug.Log(whosAsking + ": " +"HoneyGive: " + !(honeyGetters.Contains(whosAsking)) + " canCollectHoney: " + !canCollectHoney + " = " + !(!(honeyGetters.Contains(whosAsking)) ^ !canCollectHoney));
+        if (!(!(honeyGetters.Contains(whosAsking)) ^ !canCollectHoney))
             throw new ArgumentException("This object can't take honey. The seats are occupied or it doesn't have an IHoneyConsumer");
 
-        if (сurrentHoneyStocks - honey > 0)
+        if (сurrentHoneyStocks - honey >= 0)
         {
-            сurrentHoneyStocks -= honey;
+            сurrentHoneyStocks = сurrentHoneyStocks - honey;
             return honey;
         }
         else

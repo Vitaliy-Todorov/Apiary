@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bee
   m_EditorClassIdentifier: 
   speed: 5
-  maxHoneyStocks: 800
-  getHoney: 5
+  maxHoneyStocks: 20
+  getHoney: 11
   getHoneyTime: 1

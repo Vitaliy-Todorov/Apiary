@@ -2,12 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bee : MonoBehaviour
+public class Bee : Motion, IHoneyGetter
 {
+    [SerializeField]
+    public BeesParameters parameters;
+    [SerializeField]
+    float сurrentHoneyStocks = 0;
+    IHoneyGiver _honeyGiver;
+
+    //Используется в классе HiveGoTo
     public GameObject _hiveThisBee;
 
-    void Start()
+    MovementBee _stateMovement;
+    HoneyGetterBee _stateHoneyGetter;
+
+    private void Start()
     {
-        gameObject.AddComponent<MotionBee>();
+        _stateMovement = gameObject.AddComponent<MovementBee>();
+        _stateHoneyGetter = new HoneyGetterBee(gameObject, _stateMovement);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Если объект может давать мёд, то берём его
+        _honeyGiver = collision.gameObject.GetComponent<IHoneyGiver>();
+
+        if (_honeyGiver is IHoneyGiver && сurrentHoneyStocks < parameters.maxHoneyStocks)
+        {
+            _stateMovement.OnExit();
+            _stateHoneyGetter.OnEnter(_honeyGiver);
+        }
+    }
+
+    public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)
+    {
+        throw new System.NotImplementedException();
     }
 }

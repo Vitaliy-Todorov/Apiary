@@ -1,8 +1,9 @@
 ﻿public interface IState
 {
     void OnEnter();
-
-    //void Signal();
+    void OnEnter<T>();
+    void OnEnter<T>(object signal);
+    void OnEnter(object signal);
 
     void OnExit();
 }

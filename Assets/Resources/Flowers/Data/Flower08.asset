@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHoneyStocks: 10
   honeyRecovery: 1
   honeyRecoveryTime: 1
-  simultaneousUseByBees: 2
+  simultaneousUseByBees: 1
