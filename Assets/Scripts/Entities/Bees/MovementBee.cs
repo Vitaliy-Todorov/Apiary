@@ -91,14 +91,9 @@ public class HoneyGoTo : MovementBeeState
 
         foreach (GameObject flower in distanceTo)
         {
-            //Проверяем свободен ли цветок
-            if (flower.GetComponent<IHoneyGiver>().CanCollectHoney())
-            {
-                //Ищем самый близкий цветок
-                distanceToFlower = flower.transform.position - _bee.transform.position;
-                if (distanceToFlower.magnitude < minDistanceToFlower.magnitude)
-                    minDistanceToFlower = distanceToFlower;
-            }
+            distanceToFlower = flower.transform.position - _bee.transform.position;
+            if (distanceToFlower.magnitude < minDistanceToFlower.magnitude)
+                minDistanceToFlower = distanceToFlower;
         }
         _ = minDistanceToFlower;
         return minDistanceToFlower;
@@ -125,7 +120,7 @@ public class GoTo : MovementBeeState
         _weMove = new Vector3();
     }
 
-public override Vector3 GoTu
+    public override Vector3 GoTu
     {
         get => _weMove - _bee.transform.position;
     }

@@ -59,6 +59,7 @@ public class Flowers : MonoBehaviour, IHoneyGiver
         {
             canCollectHoney = true;
             honeyGetters.Remove(collision.gameObject);
+            freeFlowers.Add(gameObject);
         }
     }
 
