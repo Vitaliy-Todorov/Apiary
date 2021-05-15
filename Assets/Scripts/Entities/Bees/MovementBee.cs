@@ -12,7 +12,7 @@ public class MovementBee : MonoBehaviour, IState
     GoTo _goTo;
     BeesParameters _parameters;
 
-    private void Start()
+    public void Init()
     {
         _parameters = gameObject.GetComponent<Bee>().parameters;
         _honeyGoTo = new HoneyGoTo(gameObject);
@@ -36,18 +36,20 @@ public class MovementBee : MonoBehaviour, IState
             throw new ArgumentException("There is no such state: " + typeof(T));
     }
 
-    public void OnEnter<T>(object signal)
+    //Если нужно поминять точку в которую передвигается объект 
+    public void OnEnter<T>(object vector3)
     {
         if (typeof(T) == typeof(GoTo))
         {
             currentState = _goTo;
-            _goTo._weMove = (Vector3)signal;
+            Debug.Log("Vector3: " + _goTo._weMove + ": " + (Vector3)vector3);
+            _goTo._weMove = (Vector3)vector3;
         }
     }
 
     public void OnEnter(object signal)
     {
-        throw new NotImplementedException();
+        enabled = true;
     }
 
     public void OnExit()
@@ -95,7 +97,7 @@ public class HoneyGoTo : MovementBeeState
             if (distanceToFlower.magnitude < minDistanceToFlower.magnitude)
                 minDistanceToFlower = distanceToFlower;
         }
-        _ = minDistanceToFlower;
+
         return minDistanceToFlower;
     }
 }

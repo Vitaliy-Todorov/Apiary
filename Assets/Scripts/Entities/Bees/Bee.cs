@@ -19,6 +19,9 @@ public class Bee : Motion, IHoneyGetter
     private void Start()
     {
         _stateMovement = gameObject.AddComponent<MovementBee>();
+        _stateMovement.Init();
+        _stateMovement.OnEnter<GoTo>(new Vector3(5, 0, 5));
+        _stateMovement.OnEnter<HoneyGoTo>();
         _stateHoneyGetter = new HoneyGetterBee(gameObject, _stateMovement);
     }
 
@@ -32,7 +35,6 @@ public class Bee : Motion, IHoneyGetter
             _stateMovement.OnExit();
             _stateHoneyGetter.OnEnter(_honeyGiver);
         }
-        Debug.Log("OnCollisionEnter");
     }
 
     public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)
