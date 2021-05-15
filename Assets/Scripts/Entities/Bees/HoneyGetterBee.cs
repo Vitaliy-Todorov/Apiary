@@ -40,7 +40,8 @@ public class HoneyGetterBee : IHoneyGetter
     {
         while (true)
         {
-            //Проверяем может ли пчела ещё взять мёд и наличие объекта у которого мы хотим взять мёд
+            Debug.Log("HoneyGet 1: " + _beeGmOdj);
+            //Проверяем может ли пчела ещё взять мёд и наличие объекта у которого мы хотим взять мёд, если нет свободных мест возникает ошибка
             if (сurrentHoneyStocks < _parameters.maxHoneyStocks && !honeyGiver.Equals(null))
                 try
                 {
@@ -53,8 +54,8 @@ public class HoneyGetterBee : IHoneyGetter
                     yield break;
                 }
 
-            //Проверяем существует ли дающий мёд и проверяем наличие свободных мест, если нет, дальше ищем мёд
-            if (honeyGiver.Equals(null))
+            //Проверяем существует ли дающий мёд, если нет, дальше ищем мёд
+            if (honeyGiver.IsDestroyed())
             {
                 _stateMovement.OnEnter<HoneyGoTo>();
                 yield break;

@@ -32,6 +32,7 @@ public class Bee : Motion, IHoneyGetter
             _stateMovement.OnExit();
             _stateHoneyGetter.OnEnter(_honeyGiver);
         }
+        Debug.Log("OnCollisionEnter");
     }
 
     public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)

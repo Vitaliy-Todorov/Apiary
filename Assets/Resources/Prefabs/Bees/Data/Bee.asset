@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   maxHoneyStocks: 20
-  getHoney: 11
+  getHoney: 5
   getHoneyTime: 1

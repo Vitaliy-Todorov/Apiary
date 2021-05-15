@@ -77,6 +77,10 @@
     <Compile Include="Assets\Scripts\General events and actions\Motion\MotionInput.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\MoveTo.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\RotationInput.cs" />
+    <Compile Include="Assets\Scripts\Menu\CallGameMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\GameMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\SettingsMenu.cs" />
     <Compile Include="Assets\Scripts\Parameters\Bees\BeesParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\Flowers\FlowerParameters.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

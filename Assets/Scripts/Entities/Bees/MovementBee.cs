@@ -81,7 +81,7 @@ public class HoneyGoTo : MovementBeeState
 
     public override Vector3 GoTu
     {
-        get => MinDistanceToFlowers(Flowers.allFlowers);
+        get => MinDistanceToFlowers(Flowers.freeFlowers);
     }
 
     Vector3 MinDistanceToFlowers(List<GameObject> distanceTo)

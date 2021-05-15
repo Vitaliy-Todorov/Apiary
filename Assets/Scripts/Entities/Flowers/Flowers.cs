@@ -5,7 +5,7 @@ using System;
 
 public class Flowers : MonoBehaviour, IHoneyGiver
 {
-    public static List<GameObject> allFlowers = new List<GameObject>();
+    public static List<GameObject> freeFlowers = new List<GameObject>();
 
     List<GameObject> honeyGetters = new List<GameObject>();
 
@@ -15,15 +15,18 @@ public class Flowers : MonoBehaviour, IHoneyGiver
     float сurrentHoneyStocks = 10;
 
     bool canCollectHoney;
+    public bool isDestroyed;
 
     IEnumerator coroutine;
 
-    public bool CanCollectHoney () {return canCollectHoney;}
+    public bool CanCollectHoney () {return canCollectHoney; }
+
+    public bool IsDestroyed() { return isDestroyed;  }
 
     private void Start()
     {
         canCollectHoney = true;
-        allFlowers.Add(gameObject);
+        freeFlowers.Add(gameObject);
         сurrentHoneyStocks = parameters.maxHoneyStocks;
 
         coroutine = HoneyRecovery(parameters.honeyRecoveryTime);
@@ -32,7 +35,7 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 
     private void OnDestroy()
     {
-        allFlowers.Remove(gameObject);
+        freeFlowers.Remove(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -44,7 +47,10 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 
         //Если все места заняты canCollectHoney может сообщить, что к цветку идти ненадо
         if (honeyGetters.Count == parameters.simultaneousUseByBees)
+        {
             canCollectHoney = false;
+            freeFlowers.Remove(gameObject);
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -69,7 +75,6 @@ public class Flowers : MonoBehaviour, IHoneyGiver
 
     public float HoneyGive(GameObject whosAsking, float honey)
     {
-        Debug.Log(whosAsking + ": " +"HoneyGive: " + !(honeyGetters.Contains(whosAsking)) + " canCollectHoney: " + !canCollectHoney + " = " + !(!(honeyGetters.Contains(whosAsking)) ^ !canCollectHoney));
         if (!(!(honeyGetters.Contains(whosAsking)) ^ !canCollectHoney))
             throw new ArgumentException("This object can't take honey. The seats are occupied or it doesn't have an IHoneyConsumer");
 
@@ -81,6 +86,8 @@ public class Flowers : MonoBehaviour, IHoneyGiver
         else
         {
             Destroy(transform.root.gameObject);
+            isDestroyed = true;
+            //DestroyImmediate(transform.root.gameObject);
             return сurrentHoneyStocks;
         }
     }
