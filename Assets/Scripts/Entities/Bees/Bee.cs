@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bee : Motion, IHoneyGetter
+public class Bee : Motion, IHoneyGetter, IGeneratedObject
 {
     [SerializeField]
     public BeesParameters parameters;
@@ -11,16 +11,23 @@ public class Bee : Motion, IHoneyGetter
     IHoneyGiver _honeyGiver;
 
     //Используется в классе HiveGoTo
-    public GameObject _hiveThisBee;
+    GameObject _hiveThisBee;
 
     MovementBee _stateMovement;
     HoneyGetterBee _stateHoneyGetter;
+
+    public void Init(GameObject hiveThisBee)
+    {
+        _hiveThisBee = hiveThisBee;
+    }
 
     private void Start()
     {
         _stateMovement = gameObject.AddComponent<MovementBee>();
         _stateMovement.Init();
-        _stateMovement.OnEnter<GoTo>(new Vector3(5, 0, 5));
+        //Задаём точку куда будет возврашаться пчела после сбора мёда
+        _stateMovement.OnEnter<GoTo>(_hiveThisBee.transform.position);
+        //Идём к ближайшему свободному цветку
         _stateMovement.OnEnter<HoneyGoTo>();
         _stateHoneyGetter = new HoneyGetterBee(gameObject, _stateMovement);
     }

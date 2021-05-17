@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Hive : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GeneratingObject generatingObject;
+    [SerializeField]
+    HiveParameters parameters;
+
     void Start()
     {
-        
+        generatingObject = gameObject.AddComponent<GeneratingObject>();
+        generatingObject.Init(parameters.timeNewBee, parameters.appearsAtTime, parameters.maxNumberBee, gameObject, parameters.bee);
     }
 
     // Update is called once per frame

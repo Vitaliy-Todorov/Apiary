@@ -42,7 +42,6 @@ public class MovementBee : MonoBehaviour, IState
         if (typeof(T) == typeof(GoTo))
         {
             currentState = _goTo;
-            Debug.Log("Vector3: " + _goTo._weMove + ": " + (Vector3)vector3);
             _goTo._weMove = (Vector3)vector3;
         }
     }

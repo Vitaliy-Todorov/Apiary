@@ -69,9 +69,14 @@
     <Compile Include="Assets\Scripts\Entities\Bees\MovementBee.cs" />
     <Compile Include="Assets\Scripts\Entities\Flowers\Flowers.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\Hive.cs" />
-    <Compile Include="Assets\Scripts\General events and actions\GeneratingObject.cs" />
-    <Compile Include="Assets\Scripts\General events and actions\IHoneyGetter.cs" />
-    <Compile Include="Assets\Scripts\General events and actions\IHoneyGiver.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Bar\IProgressBar.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Bar\RadialProgressBar.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Billdoard.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Generated\GeneratingObject.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Generated\IGeneratedObject.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Honey\IHoneyGetter.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Honey\IHoneyGiver.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\IAddCamera.cs" />
     <Compile Include="Assets\Scripts\General events and actions\IState.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\Motion.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Motion\MotionInput.cs" />
@@ -81,8 +86,9 @@
     <Compile Include="Assets\Scripts\Menu\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\SettingsMenu.cs" />
-    <Compile Include="Assets\Scripts\Parameters\Bees\BeesParameters.cs" />
-    <Compile Include="Assets\Scripts\Parameters\Flowers\FlowerParameters.cs" />
+    <Compile Include="Assets\Scripts\Parameters\BeesParameters.cs" />
+    <Compile Include="Assets\Scripts\Parameters\FlowerParameters.cs" />
+    <Compile Include="Assets\Scripts\Parameters\HiveParameters.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Game_development/Project/Apiary/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

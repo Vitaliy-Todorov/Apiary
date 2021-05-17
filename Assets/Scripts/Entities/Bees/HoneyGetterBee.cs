@@ -40,7 +40,6 @@ public class HoneyGetterBee : IHoneyGetter
     {
         while (true)
         {
-            Debug.Log("HoneyGet 1: " + _beeGmOdj);
             //Проверяем может ли пчела ещё взять мёд и наличие объекта у которого мы хотим взять мёд, если нет свободных мест возникает ошибка
             if (сurrentHoneyStocks < _parameters.maxHoneyStocks && !honeyGiver.Equals(null))
                 try
