@@ -9,7 +9,6 @@ public class Billdoard : MonoBehaviour
 
     public void AddCamera(Transform cam)
     {
-        Debug.Log(cam.position);
         this.cam = cam;
     }
 

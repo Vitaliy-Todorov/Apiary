@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Entities\Bees\MovementBee.cs" />
     <Compile Include="Assets\Scripts\Entities\Flowers\Flowers.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\Hive.cs" />
+    <Compile Include="Assets\Scripts\Entities\Hive\HiveMenu.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Bar\IProgressBar.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Bar\RadialProgressBar.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Billdoard.cs" />

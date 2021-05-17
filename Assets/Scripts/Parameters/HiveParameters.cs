@@ -12,4 +12,6 @@ public class HiveParameters : ScriptableObject
     public int maxNumberBee;
     [SerializeField]
     public GameObject bee;
+    [SerializeField]
+    public float maxHoney;
 }
