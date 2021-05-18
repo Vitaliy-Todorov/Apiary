@@ -33,17 +33,16 @@ public class Hive : SpawningDifferentObjects
             return;
 
         if (createObjects.Contains(collision.gameObject) && dee.FilledHoneyStocks())
-            toHive();
+            toHive(dee);
 
-        сurrentHoneyStocks += dee.GettHoney();
         сurrentBees += 1;
 
         hiveMenu.SetHoney(сurrentHoneyStocks);
         hiveMenu.SetBees(сurrentBees);
     }
 
-    void toHive()
+    void toHive(Bee dee)
     {
-
+        сurrentHoneyStocks += dee.GettHoney();
     }
 }
