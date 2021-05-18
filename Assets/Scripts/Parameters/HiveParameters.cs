@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "Hive", menuName = "Hive/Hive", order = 2)]
+[CreateAssetMenu(fileName = "Hive", menuName = "Apiary/Hive", order = 2)]
 public class HiveParameters : ScriptableObject
 {
     [Header("Parameters")]
@@ -14,4 +15,7 @@ public class HiveParameters : ScriptableObject
     public GameObject bee;
     [SerializeField]
     public float maxHoney;
+    [Header("Список типа ObjectAndFloat для гинерации, с объектом и вероятностью")]
+    [SerializeField]
+    public List<ObjectAndFloat> spawningObject;
 }

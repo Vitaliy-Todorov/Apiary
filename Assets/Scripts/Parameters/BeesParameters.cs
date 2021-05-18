@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Bee", menuName = "Bee/Bee", order = 2)]
+[CreateAssetMenu(fileName = "Bee", menuName = "Apiary/Bee", order = 2)]
 public class BeesParameters : ScriptableObject
 {
     [SerializeField]

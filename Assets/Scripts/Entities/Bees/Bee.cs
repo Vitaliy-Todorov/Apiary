@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bee : Motion, IHoneyGetter, IGeneratedObject
+public class Bee : Motion, IGeneratedObject
 {
     [SerializeField]
     public BeesParameters parameters;
@@ -15,6 +15,9 @@ public class Bee : Motion, IHoneyGetter, IGeneratedObject
 
     MovementBee _stateMovement;
     HoneyGetterBee _stateHoneyGetter;
+
+    //Позже избавиться от этого, используется в HoneyConsumer
+    public float СurrentHoneyStocks { get => сurrentHoneyStocks; set => сurrentHoneyStocks = value; }
 
     public void Init(GameObject hiveThisBee)
     {
@@ -44,8 +47,32 @@ public class Bee : Motion, IHoneyGetter, IGeneratedObject
         }
     }
 
-    public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)
+    public float GettHoney(float gettHoney)
     {
-        throw new System.NotImplementedException();
+        if (сurrentHoneyStocks - gettHoney <= gettHoney)
+        {
+            float honey = сurrentHoneyStocks;
+            сurrentHoneyStocks = 0;
+            _stateMovement.OnEnter<HoneyGoTo>();
+            return honey;
+        }
+        сurrentHoneyStocks -= gettHoney;
+        return gettHoney;
+    }
+
+    public float GettHoney()
+    {
+        float honey = сurrentHoneyStocks;
+        сurrentHoneyStocks = 0;
+        _stateMovement.OnEnter<HoneyGoTo>();
+        return honey;
+    }
+
+    public bool FilledHoneyStocks()
+    {
+        if (сurrentHoneyStocks >= parameters.maxHoneyStocks)
+            return true;
+        else
+            return false;
     }
 }

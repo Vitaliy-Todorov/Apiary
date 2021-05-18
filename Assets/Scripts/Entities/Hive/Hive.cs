@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hive : MonoBehaviour
+public class Hive : SpawningDifferentObjects
 {
-    GeneratingObject generatingObject;
+    SpawningDifferentObjects spawningDifferentObjects;
     [SerializeField]
     HiveParameters parameters;
     [SerializeField]
@@ -15,8 +15,11 @@ public class Hive : MonoBehaviour
 
     void Start()
     {
-        generatingObject = gameObject.AddComponent<GeneratingObject>();
-        generatingObject.Init(parameters.timeNewBee, parameters.appearsAtTime, parameters.maxNumberBee, gameObject, parameters.bee);
+        //Создаём спавнер
+        Init(parameters.appearsAtTime, parameters.maxNumberBee, gameObject, parameters.spawningObject);
+        coroutine = CreateObject();
+        StartCoroutine(coroutine);
+        //Подключаем меню улья
         hiveMenu.MaxValue(parameters.maxHoney, parameters.maxNumberBee);
         hiveMenu.SetBees(0);
         hiveMenu.SetHoney(0);
@@ -24,10 +27,23 @@ public class Hive : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        сurrentHoneyStocks += 10;
+        Bee dee = collision.gameObject.GetComponent<Bee>();
+        //Если это не пчела, не взаимодействуем
+        if (!dee)
+            return;
+
+        if (createObjects.Contains(collision.gameObject) && dee.FilledHoneyStocks())
+            toHive();
+
+        сurrentHoneyStocks += dee.GettHoney();
         сurrentBees += 1;
 
         hiveMenu.SetHoney(сurrentHoneyStocks);
         hiveMenu.SetBees(сurrentBees);
+    }
+
+    void toHive()
+    {
+
     }
 }

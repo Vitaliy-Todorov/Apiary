@@ -22,7 +22,6 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
 
     GameObject _generatingObject;
 
-
     IEnumerator coroutine;
 
     public bool CanCollectHoney () {return canCollectHoney; }
@@ -55,7 +54,7 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
     private void OnCollisionEnter(Collision collision)
     {
         //Проверяем наличие свободных мест для тех кто хочет потреблять мёд
-        if (collision.gameObject.GetComponent<IHoneyGetter>() is IHoneyGetter &&
+        if (collision.gameObject.GetComponent<HoneyConsumer>() is HoneyConsumer &&
             honeyGetters.Count < parameters.simultaneousUseByBees)
             honeyGetters.Add(collision.gameObject);
 

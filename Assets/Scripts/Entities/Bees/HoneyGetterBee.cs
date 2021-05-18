@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoneyGetterBee : IHoneyGetter
+public class HoneyGetterBee : HoneyConsumer
 {
     public BeesParameters _parameters;
-    [SerializeField]
-    float сurrentHoneyStocks = 0;
 
     GameObject _beeGmOdj;
     Bee _bee;
@@ -27,7 +25,7 @@ public class HoneyGetterBee : IHoneyGetter
     /// </summary>
     public void OnEnter(object honeyGiver)
     {
-        coroutine = HoneyGet((IHoneyGiver)honeyGiver, _parameters.getHoneyTime);
+        coroutine = ConsumeHoney((IHoneyGiver)honeyGiver, _parameters.getHoneyTime);
         _bee.StartCoroutine(coroutine);
     }
 
@@ -36,15 +34,15 @@ public class HoneyGetterBee : IHoneyGetter
         _bee.StopCoroutine(coroutine);
     }
 
-    public IEnumerator HoneyGet(IHoneyGiver honeyGiver, float waitTime)
+    public IEnumerator ConsumeHoney(IHoneyGiver honeyGiver, float waitTime)
     {
         while (true)
         {
             //Проверяем может ли пчела ещё взять мёд и наличие объекта у которого мы хотим взять мёд, если нет свободных мест возникает ошибка
-            if (сurrentHoneyStocks < _parameters.maxHoneyStocks && !honeyGiver.Equals(null))
+            if (_bee.СurrentHoneyStocks < _parameters.maxHoneyStocks && !honeyGiver.Equals(null))
                 try
                 {
-                    сurrentHoneyStocks +=
+                    _bee.СurrentHoneyStocks +=
                         honeyGiver.HoneyGive(_beeGmOdj, _parameters.getHoney);
                 }
                 catch
@@ -60,7 +58,7 @@ public class HoneyGetterBee : IHoneyGetter
                 yield break;
             }
             //Проверяем заполненность хранилища мёда пчелы, если оно заполнено летим в улей Hive
-            else if (сurrentHoneyStocks >= _parameters.maxHoneyStocks)
+            else if (_bee.СurrentHoneyStocks >= _parameters.maxHoneyStocks)
             {
                 _stateMovement.OnEnter<GoTo>();
                 yield break;
