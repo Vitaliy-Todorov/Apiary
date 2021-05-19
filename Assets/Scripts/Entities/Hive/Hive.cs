@@ -10,7 +10,6 @@ public class Hive : SpawningDifferentObjects
     HiveMenu hiveMenu;
 
     float сurrentHoneyStocks = 0;
-    int сurrentBees = 0;
 
     protected IEnumerator createObject;
     protected IEnumerator beeInHives;
@@ -40,10 +39,8 @@ public class Hive : SpawningDifferentObjects
             StartCoroutine(beeInHives);
         }
 
-        сurrentBees += 1;
-
         hiveMenu.SetHoney(сurrentHoneyStocks);
-        hiveMenu.SetBees(сurrentBees);
+        hiveMenu.SetBees(CreateObjects.Count);
     }
 
     IEnumerator BeeInHives(GameObject beeGmObj, Bee bee)
@@ -56,5 +53,10 @@ public class Hive : SpawningDifferentObjects
 
 
         beeGmObj.SetActive(true);
+    }
+
+    protected override Vector3 SpawnPoint()
+    {
+        return gameObject.transform.position;
     }
 }

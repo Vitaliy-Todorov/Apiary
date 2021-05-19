@@ -93,7 +93,7 @@ public class SpawningDifferentObjects : MonoBehaviour
                 createObjects.Remove(createObject);
     }
 
-    Vector3 SpawnPoint()
+     protected virtual Vector3 SpawnPoint()
     {
         //Получаем размеры Mesh (думаю это можно назвать физическим пространством объекта). Это нужно, что бы получить ограничения места респаума
         Vector3 sizeLocation = spawnerLocation.GetComponent<MeshFilter>().sharedMesh.bounds.size;
