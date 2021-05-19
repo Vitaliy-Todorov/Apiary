@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab301f9c918ef7469c7cf5008caa5d7, type: 3}
   m_Name: ObjectAndFloat 1
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 0}
-  probs: 0
+  id: wasp
+  spawnObject: {fileID: 100082, guid: 52d8058b7adcb7742b4eb6d76334e0f3, type: 3}
+  probs: 1

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab301f9c918ef7469c7cf5008caa5d7, type: 3}
   m_Name: ObjectAndFloat
   m_EditorClassIdentifier: 
-  spawnObject: {fileID: 0}
-  probs: 0
+  id: bee 1
+  spawnObject: {fileID: 2945326286204214599, guid: 34db6bb9574ef7044b091e12bc0ae496,
+    type: 3}
+  probs: 3

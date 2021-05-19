@@ -8,6 +8,8 @@ public class Bee : Motion, IGeneratedObject
     public BeesParameters parameters;
     [SerializeField]
     float сurrentHoneyStocks = 0;
+    //Задаётся при спавне, что бы связать префаб и экземпляр на сцене (ну или вообще, если нужно связать элемент списка и экземпляр на сцене)
+    string _id;
     IHoneyGiver _honeyGiver;
 
     //Используется в классе HiveGoTo
@@ -18,10 +20,12 @@ public class Bee : Motion, IGeneratedObject
 
     //Позже избавиться от этого, используется в HoneyConsumer
     public float СurrentHoneyStocks { get => сurrentHoneyStocks; set => сurrentHoneyStocks = value; }
+    public string Id { get => _id; }
 
-    public void Init(GameObject hiveThisBee)
+    public void Init(GameObject hiveThisBee, string id)
     {
         _hiveThisBee = hiveThisBee;
+        _id = id;
     }
 
     private void Start()

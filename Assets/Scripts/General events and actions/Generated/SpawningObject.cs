@@ -48,7 +48,7 @@ public class SpawningObject : MonoBehaviour
         {
             GameObject generatedObject = Instantiate(_createObjectInStance, SpawnPoint(), Quaternion.identity);
             //Отправляем созданному объекту ссылку на создателя
-            generatedObject.GetComponent<IGeneratedObject>().Init(gameObject);
+            generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, _createObjectInStance.name);
             //Добавляем в список созданных и существующих объектов
             createObjects.Add(generatedObject);
             //Переименовываем, чтобы различать объекты

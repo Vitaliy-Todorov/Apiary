@@ -15,6 +15,8 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
     float сurrentHoneyStocks = 10;
     [SerializeField]
     GameObject progressBarGmObj;
+    //Задаётся при спавне, что бы связать префаб и экземпляр на сцене (ну или вообще, если нужно связать элемент списка и экземпляр на сцене)
+    string _id;
     IProgressBar progressBar;
 
     bool canCollectHoney;
@@ -24,11 +26,14 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
 
     IEnumerator coroutine;
 
+    public string Id { get => _id; }
+
     public bool CanCollectHoney () {return canCollectHoney; }
 
-    public void Init(GameObject generatingObject)
+    public void Init(GameObject generatingObject, string id)
     {
         _generatingObject = generatingObject;
+        _id = id;
     }
 
     public bool IsDestroyed() { return isDestroyed;  }

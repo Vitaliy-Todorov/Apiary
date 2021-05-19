@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IGeneratedObject
 {
-    void Init(GameObject generatingObject);
+    void Init(GameObject generatingObject, string id);
 }

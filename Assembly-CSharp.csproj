@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Parameters\FlowerParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\HiveParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\ObjectAndFloat.cs" />
+    <Compile Include="Assets\Scripts\Parameters\SpawningDifferentObjectsParameters.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Game_development/Project/Apiary/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

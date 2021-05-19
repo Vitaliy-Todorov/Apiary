@@ -16,3 +16,7 @@ MonoBehaviour:
   appearsAtTime: 2
   maxNumberBee: 6
   bee: {fileID: 2945326286204214599, guid: 34db6bb9574ef7044b091e12bc0ae496, type: 3}
+  maxHoney: 100
+  spawningObject:
+  - {fileID: 11400000, guid: 945f0f940dddd654b843ec1e847a8d94, type: 2}
+  - {fileID: 11400000, guid: c251c41e69974384ea18d98b7adce5cd, type: 2}
