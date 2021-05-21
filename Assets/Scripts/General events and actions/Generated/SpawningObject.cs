@@ -5,27 +5,17 @@ using System.Linq;
 public class SpawningObject : MonoBehaviour
 {
     [SerializeField]
-    public float time = 1;
+    SpawningObjectParameters parameters;
     [SerializeField]
-    public int appearsAtTime = 1;
+    public GameObject spawnerLocation;
     [SerializeField]
-    public int maxNumberObject = 4;
-    [SerializeField]
-    GameObject _spawnerLocation;
-    [SerializeField]
-    GameObject _createObjectInStance;
-    [SerializeField]
-    Transform cameraForBar;
+    public Transform cameraForBar;
 
     List<GameObject> createObjects;
 
-    public void Init(float time, int appearsAtTime, int maxNumberObject, GameObject spawnerLocation, GameObject createObjectInStance)
+    public void Init(SpawningObjectParameters parameters)
     {
-        this.time = time;
-        this.appearsAtTime = appearsAtTime;
-        this.maxNumberObject = maxNumberObject;
-        _spawnerLocation = spawnerLocation;
-        _createObjectInStance = createObjectInStance;
+        this.parameters = parameters;
     }
 
     void Start()
@@ -37,25 +27,36 @@ public class SpawningObject : MonoBehaviour
     void SpawnerDelay()
     {
         DeleteDestroyed();
-        for(int i = 0; i < appearsAtTime; i++)
+        for(int i = 0; i < parameters.appearsAtTime; i++)
             CreateObject();
-        Invoke("SpawnerDelay", time);
+        Invoke("SpawnerDelay", parameters.time);
     }
 
     protected void CreateObject()
     {
-        if (createObjects.Count < maxNumberObject)
+        if (createObjects.Count < parameters.maxNumberObject)
         {
-            GameObject generatedObject = Instantiate(_createObjectInStance, SpawnPoint(), Quaternion.identity);
-            //Отправляем созданному объекту ссылку на создателя
-            generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, _createObjectInStance.name);
-            //Добавляем в список созданных и существующих объектов
-            createObjects.Add(generatedObject);
-            //Переименовываем, чтобы различать объекты
-            generatedObject.name = generatedObject.name + createObjects.Count;
+            Vector3 spawnPoint;
+            spawnPoint = SpawnPoint();
+            //Проверяем наличие соседей (соприкосновений с ними)
+            if (Physics.OverlapBox(
+                spawnPoint, 
+                new Vector3(parameters.distance, parameters.distance, parameters.distance), 
+                Quaternion.identity, 
+                LayerMask.GetMask(parameters.neighborLayer)
+                ).Length == 0)
+            {
+                GameObject generatedObject = Instantiate(parameters.createObjectInStance, spawnPoint, Quaternion.identity);
+                //Отправляем созданному объекту ссылку на создателя
+                generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, parameters.createObjectInStance.name);
+                //Добавляем в список созданных и существующих объектов
+                createObjects.Add(generatedObject);
+                //Переименовываем, чтобы различать объекты
+                generatedObject.name = generatedObject.name + createObjects.Count;
 
-            if(generatedObject.GetComponent<IAddCamera>() != null)
-                generatedObject.GetComponent<IAddCamera>().AddCamera(cameraForBar);
+                if (generatedObject.GetComponent<IAddCamera>() != null)
+                    generatedObject.GetComponent<IAddCamera>().AddCamera(cameraForBar);
+            }
         }
     }
 
@@ -70,10 +71,10 @@ public class SpawningObject : MonoBehaviour
     Vector3 SpawnPoint()
     {
         //Получаем размеры Mesh (думаю это можно назвать физическим пространством объекта). Это нужно, что бы получить ограничения места респаума
-        Vector3 sizeLocation = _spawnerLocation.GetComponent<MeshFilter>().sharedMesh.bounds.size;
-        float x = (sizeLocation.x - 2) * Random.Range(-.5f, .5f);
-        float z = (sizeLocation.z - 2) * Random.Range(-.5f, .5f);
+        //Vector3 sizeLocation = parameters.spawnerLocation.GetComponent<MeshFilter>().sharedMesh.bounds.size;
+        float x = (parameters.spawnerLocationX) * Random.Range(-.5f, .5f);
+        float z = (parameters.spawnerLocationZ) * Random.Range(-.5f, .5f);
 
-        return (new Vector3(x, 0.5f, z)) + _spawnerLocation.transform.position;
+        return (new Vector3(x, 0.5f, z)) + gameObject.transform.position;
     }
 }

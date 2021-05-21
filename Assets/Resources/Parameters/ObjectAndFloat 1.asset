@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: wasp
   spawnObject: {fileID: 100082, guid: 52d8058b7adcb7742b4eb6d76334e0f3, type: 3}
-  probs: 1
+  probs: 0

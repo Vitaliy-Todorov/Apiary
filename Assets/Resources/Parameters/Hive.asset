@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9471fdaf207cb4f489e5d69f69ee6621, type: 3}
   m_Name: Hive
   m_EditorClassIdentifier: 
-  timeNewBee: 1
-  appearsAtTime: 2
-  maxNumberBee: 6
-  bee: {fileID: 2945326286204214599, guid: 34db6bb9574ef7044b091e12bc0ae496, type: 3}
-  maxHoney: 100
+  time: 1
+  appearsAtTime: 200
+  maxNumberObject: 200
   spawningObject:
   - {fileID: 11400000, guid: 945f0f940dddd654b843ec1e847a8d94, type: 2}
   - {fileID: 11400000, guid: c251c41e69974384ea18d98b7adce5cd, type: 2}
+  maxHoney: 10
+  timeBeesGiveHoney: 3

@@ -6,4 +6,6 @@ public class HiveParameters : SpawningDifferentObjectsParameters
 {
     [SerializeField]
     public float maxHoney;
+    [SerializeField]
+    public float timeBeesGiveHoney;
 }

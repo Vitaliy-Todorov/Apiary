@@ -4,14 +4,14 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class SpawningDifferentObjects : MonoBehaviour
+public class SpawningDifferentObjects : MonoBehaviour, IState
 {
     [SerializeField]
     GameObject spawnerLocation;
     [SerializeField]
     Transform cameraForBar;
     [SerializeField]
-    public SpawningDifferentObjectsParameters parameters;
+    SpawningDifferentObjectsParameters baseParameters;
     List<ObjectAndFloat> spawningObject = new List<ObjectAndFloat>();
 
     protected List<GameObject> createObjects = new List<GameObject>();
@@ -23,14 +23,24 @@ public class SpawningDifferentObjects : MonoBehaviour
     public void Init(SpawningDifferentObjectsParameters parameters, GameObject spawnerLocation)
     {
         this.spawnerLocation = spawnerLocation;
-        this.parameters = parameters;
+        this.baseParameters = parameters;
         //Сортируем по возрастанию вероятности
         spawningObject = parameters.spawningObject.OrderBy(spObj => spObj.probs).ToList();
     }
 
+    public void OnEnter()
+    {
+        enabled = true;
+    }
+
+    public void OnExit()
+    {
+        enabled = false;
+    }
+
     void Start()
     {
-        spawningObject = parameters.spawningObject.OrderBy(spObj => spObj.probs).ToList();
+        spawningObject = baseParameters.spawningObject.OrderBy(spObj => spObj.probs).ToList();
 
         coroutineCreateObject = CreateObject();
         StartCoroutine(coroutineCreateObject);
@@ -41,24 +51,29 @@ public class SpawningDifferentObjects : MonoBehaviour
         while (true)
         {
             DeleteDestroyed();
-            //Проверяем нужно ли ещё создавать пчёл и инициализирован ли список spawningObject
-            if (createObjects.Count < parameters.maxNumberObject && spawningObject.Count != 0)
-            {
-                int prefabIndex = ChooseIndexObject(spawningObject);
-                GameObject generatedObject = Instantiate(spawningObject[prefabIndex].spawnObject, SpawnPoint(), Quaternion.identity);
-                //Отправляем созданному объекту ссылку на создателя и prefab по которому был создан объект
-                if (generatedObject.GetComponent<IGeneratedObject>() != null)
-                    generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, spawningObject[prefabIndex].id);
-                //Добавляем в список созданных и существующих объектов
-                createObjects.Add(generatedObject);
-                //Переименовываем, чтобы различать объекты
-                generatedObject.name = generatedObject.name + createObjects.Count;
-                //Если есть Bar, или что-то ещё для чего нужна камера, отправляем на неё ссылку
-                if (generatedObject.GetComponent<IAddCamera>() != null)
-                    generatedObject.GetComponent<IAddCamera>().AddCamera(cameraForBar);
-            }
 
-            yield return new WaitForSeconds(parameters.appearsAtTime);
+            for (int i = 0; i < baseParameters.appearsAtTime; i++)
+                //Проверяем нужно ли ещё создавать пчёл и инициализирован ли список spawningObject
+                if (createObjects.Count < baseParameters.maxNumberObject && spawningObject.Count != 0)
+                {
+                    int prefabIndex = ChooseIndexObject(spawningObject);
+                    GameObject generatedObject = Instantiate(spawningObject[prefabIndex].spawnObject, SpawnPoint(), Quaternion.identity);
+                    //Отправляем созданному объекту ссылку на создателя и prefab по которому был создан объект
+                    if (generatedObject.GetComponent<IGeneratedObject>() != null)
+                        generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, spawningObject[prefabIndex].id);
+                    //Добавляем в список созданных и существующих объектов
+                    createObjects.Add(generatedObject);
+                    //Переименовываем, чтобы различать объекты
+                    generatedObject.name = generatedObject.name + createObjects.Count;
+                    //Если есть Bar, или что-то ещё для чего нужна камера, отправляем на неё ссылку
+                    if (generatedObject.GetComponent<IAddCamera>() != null)
+                        generatedObject.GetComponent<IAddCamera>().AddCamera(cameraForBar);
+                    //yield return new WaitForSeconds(.01f);
+                }
+                else
+                    OnExit();
+
+            yield return new WaitForSeconds(baseParameters.time);
         }
     }
 

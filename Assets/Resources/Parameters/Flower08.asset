@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d016f84ca2f8f22438fe62844b2f6799, type: 3}
   m_Name: Flower08
   m_EditorClassIdentifier: 
-  maxHoneyStocks: 10
+  maxHoneyStocks: 18
   honeyRecovery: 1
   honeyRecoveryTime: 1
   simultaneousUseByBees: 1

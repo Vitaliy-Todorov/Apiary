@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Flower08", menuName = "Apiary/Flower08", order = 2)]
+[CreateAssetMenu(fileName = "Flower08", menuName = "Apiary/Flower08")]
 public class FlowerParameters : ScriptableObject
 {
-    [Header("Parameters")]
     [SerializeField]
     public float maxHoneyStocks = 10;
     [SerializeField]

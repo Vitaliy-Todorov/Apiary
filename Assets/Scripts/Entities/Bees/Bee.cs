@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//HoneyConsumer нужен что бы цветок понимал, что у него берут мёд
 public class Bee : Motion, IGeneratedObject
 {
     [SerializeField]
@@ -15,8 +15,8 @@ public class Bee : Motion, IGeneratedObject
     //Используется в классе HiveGoTo
     GameObject _hiveThisBee;
 
-    MovementBee _stateMovement;
-    HoneyGetterBee _stateHoneyGetter;
+    public MovementBee _stateMovement;
+    public CollectGiveHoneyBee _stateHoneyGetter;
 
     //Позже избавиться от этого, используется в HoneyConsumer
     public float СurrentHoneyStocks { get => сurrentHoneyStocks; set => сurrentHoneyStocks = value; }
@@ -36,19 +36,8 @@ public class Bee : Motion, IGeneratedObject
         _stateMovement.OnEnter<GoTo>(_hiveThisBee.transform.position);
         //Идём к ближайшему свободному цветку
         _stateMovement.OnEnter<HoneyGoTo>();
-        _stateHoneyGetter = new HoneyGetterBee(gameObject, _stateMovement);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Если объект может давать мёд, то берём его
-        _honeyGiver = collision.gameObject.GetComponent<IHoneyGiver>();
-
-        if (_honeyGiver is IHoneyGiver && сurrentHoneyStocks < parameters.maxHoneyStocks)
-        {
-            _stateMovement.OnExit();
-            _stateHoneyGetter.OnEnter(_honeyGiver);
-        }
+        _stateHoneyGetter = gameObject.AddComponent<CollectGiveHoneyBee>();
+        _stateHoneyGetter.Init(this);
     }
 
     public float GettHoney(float gettHoney)
@@ -74,9 +63,6 @@ public class Bee : Motion, IGeneratedObject
 
     public bool FilledHoneyStocks()
     {
-        if (сurrentHoneyStocks >= parameters.maxHoneyStocks)
-            return true;
-        else
-            return false;
+        return (сurrentHoneyStocks >= parameters.maxHoneyStocks);
     }
 }

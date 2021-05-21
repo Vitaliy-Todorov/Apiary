@@ -1,62 +1,63 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Hive : SpawningDifferentObjects
+public class Hive : MonoBehaviour, IOnClick
 {
-    SpawningDifferentObjects spawningDifferentObjects;
     [SerializeField]
-    HiveParameters parameters1;
+    HiveParameters parameters;
     [SerializeField]
-    HiveMenu hiveMenu;
+    GameObject hiveMenu;
+    HiveMenu menu;
 
-    float сurrentHoneyStocks = 0;
+    SpawningBees _stateSpawningBees;
+    CollectGiveHoneyHive _stateCollectGiveHoneyHive;
+
+    float currentHoneyStocks = 0;
 
     protected IEnumerator createObject;
     protected IEnumerator beeInHives;
 
+    public float СurrentHoneyStocks { get => currentHoneyStocks; set => currentHoneyStocks = value; }
+
     void Start()
     {
-        //Создаём спавнер
-        Init(parameters1, gameObject);
-        createObject = CreateObject();
-        StartCoroutine(createObject);
         //Подключаем меню улья
-        hiveMenu.MaxValue(parameters1.maxHoney, parameters1.maxNumberObject);
-        hiveMenu.SetBees(0);
-        hiveMenu.SetHoney(0);
+        menu = hiveMenu.GetComponent<HiveMenu>();
+        menu.MaxValue(parameters.maxHoney, parameters.maxNumberObject);
+        menu.SetBees(0);
+        menu.SetHoney(0);
+        //Создаём спавнер
+        _stateSpawningBees = gameObject.AddComponent<SpawningBees>();
+        _stateSpawningBees.Init(parameters);
+        //Создаём собирателя мёда
+        _stateCollectGiveHoneyHive = gameObject.AddComponent<CollectGiveHoneyHive>();
+        _stateCollectGiveHoneyHive.Init(this, parameters, _stateSpawningBees, menu);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void CollectBeesInHive()
     {
-        Bee bee = collision.gameObject.GetComponent<Bee>();
-        //Если это не пчела, не взаимодействуем
-        if (!bee)
-            return;
-
-        if (createObjects.Contains(collision.gameObject) && bee.FilledHoneyStocks())
+        foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
         {
-            beeInHives = BeeInHives(collision.gameObject, bee);
-            StartCoroutine(beeInHives);
+            Bee bee = beeGmObj.GetComponent<Bee>();
+            bee._stateHoneyGetter.OnExit();
+            bee._stateMovement.OnEnter<GoTo>();
         }
-
-        hiveMenu.SetHoney(сurrentHoneyStocks);
-        hiveMenu.SetBees(CreateObjects.Count);
     }
 
-    IEnumerator BeeInHives(GameObject beeGmObj, Bee bee)
+    public void SendForСollection()
     {
-        сurrentHoneyStocks += bee.GettHoney();
+        foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
+        {
+            beeGmObj.SetActive(true);
 
-        beeGmObj.SetActive(false);
-
-        yield return new WaitForSeconds(3);
-
-
-        beeGmObj.SetActive(true);
+            Bee bee = beeGmObj.GetComponent<Bee>();
+            bee._stateHoneyGetter.OnEnter();
+            bee._stateMovement.OnEnter<HoneyGoTo>();
+        }
     }
 
-    protected override Vector3 SpawnPoint()
+    public void OnClick()
     {
-        return gameObject.transform.position;
+        hiveMenu.SetActive(true);
     }
 }

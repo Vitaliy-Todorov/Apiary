@@ -22,7 +22,11 @@ public class MovementBee : MonoBehaviour, IState
 
     public void OnEnter()
     {
-        throw new NotImplementedException();
+        enabled = true;
+    }
+    public void OnExit()
+    {
+        enabled = false;
     }
 
     public void OnEnter<T>()
@@ -44,16 +48,6 @@ public class MovementBee : MonoBehaviour, IState
             currentState = _goTo;
             _goTo._weMove = (Vector3)vector3;
         }
-    }
-
-    public void OnEnter(object signal)
-    {
-        enabled = true;
-    }
-
-    public void OnExit()
-    {
-        enabled = false;
     }
 
     private void FixedUpdate()
@@ -87,12 +81,13 @@ public class HoneyGoTo : MovementBeeState
 
     Vector3 MinDistanceToFlowers(List<GameObject> distanceTo)
     {
-        Vector3 distanceToFlower = new Vector3();
+        Vector3 distanceToFlower = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
         Vector3 minDistanceToFlower = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
         foreach (GameObject flower in distanceTo)
         {
-            distanceToFlower = flower.transform.position - _bee.transform.position;
+            if (flower != null)
+                distanceToFlower = flower.transform.position - _bee.transform.position;
             if (distanceToFlower.magnitude < minDistanceToFlower.magnitude)
                 minDistanceToFlower = distanceToFlower;
         }
@@ -103,7 +98,7 @@ public class HoneyGoTo : MovementBeeState
 
 
 /// <summary>
-/// Если при создании не назначить точку возврата движется в (0, 0, 0)
+/// Объект будет возвращаться в указанную точку. Если при создании не назначить точку возврата движется в (0, 0, 0)
 /// </summary>
 public class GoTo : MovementBeeState
 {
@@ -115,6 +110,7 @@ public class GoTo : MovementBeeState
         _bee = bee;
         _weMove = weMove;
     }
+
     public GoTo(GameObject bee)
     {
         _bee = bee;
