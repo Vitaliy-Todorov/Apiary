@@ -36,9 +36,13 @@ public class Hive : MonoBehaviour, IOnClick
 
     public void CollectBeesInHive()
     {
+        //Отключаем проверку заполенности резервуара пчёл и их выход из улья
+        _stateCollectGiveHoneyHive.OnEnter(true);
+
         foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
         {
             Bee bee = beeGmObj.GetComponent<Bee>();
+
             bee._stateHoneyGetter.OnExit();
             bee._stateMovement.OnEnter<GoTo>();
         }
@@ -46,6 +50,8 @@ public class Hive : MonoBehaviour, IOnClick
 
     public void SendForСollection()
     {
+        _stateCollectGiveHoneyHive.OnEnter(false);
+
         foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
         {
             beeGmObj.SetActive(true);

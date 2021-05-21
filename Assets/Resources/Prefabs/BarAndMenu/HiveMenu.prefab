@@ -230,7 +230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: Information
 --- !u!1 &3204229248044892743
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 2277363649138627175}
   - component: {fileID: 4350049279618032348}
   m_Layer: 5
-  m_Name: Back
+  m_Name: Information
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1316,16 +1316,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a411305a7b0b8c4448ed68a1f5ba2d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationHive: {fileID: 6273397347313963208}
+  exitButton: {fileID: 6273397346233031988}
   actionsHive: {fileID: 6981104389963119867}
   collectBeesInHive: {fileID: 1725897555742873843}
   "sendFor\u0421ollection": {fileID: 8429317766270485692}
   actions: {fileID: 8393085413414169570}
-  back: {fileID: 2662502115039518766}
-  exitButton: {fileID: 6273397346233031988}
+  informationHive: {fileID: 6273397347313963208}
   honey: {fileID: 6273397346774769209}
   bees: {fileID: 6273397346605617122}
   hive: {fileID: 0}
+  back: {fileID: 2662502115039518766}
 --- !u!1 &6273397347462088194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2283,7 +2283,7 @@ GameObject:
   - component: {fileID: 519958942814330771}
   - component: {fileID: 2662502115039518766}
   m_Layer: 5
-  m_Name: Back
+  m_Name: InformationHive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

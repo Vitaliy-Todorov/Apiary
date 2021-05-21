@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectGiveHoneyHive : MonoBehaviour
+/// <summary>
+/// Что бы пчёлы возвращались в улий делаем OnEnter(true)
+/// </summary>
+public class CollectGiveHoneyHive : MonoBehaviour, IState
 {
     Hive _hive;
     HiveParameters _parameters;
     HiveMenu _menu;
+    //Если false то пчёлы заходят в улей, только с полным резервуаром меда
+    bool _collectBees;
 
     SpawningBees _stateSpawningBees;
 
@@ -20,12 +25,34 @@ public class CollectGiveHoneyHive : MonoBehaviour
         _menu = menu;
     }
 
+    public void OnEnter()
+    {
+        enabled = true;
+    }
+
+    //Если пчелы возвращаются в улей на постоянно то true. Если _collectBees = false, то проверяем заполненность мёдного резервуара пчёл
+    public void OnEnter(bool collectBees)
+    {
+        _collectBees = collectBees;
+        enabled = true;
+    }
+
+    public void OnExit()
+    {
+        enabled = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Bee bee = collision.gameObject.GetComponent<Bee>();
 
+        //Нужно проверять заполненность мёдного резервуара пчёл? Если _collectBees = false, то проверяем
+        bool filledHoneyStocks = true;
+        if (bee != null && !_collectBees)
+            filledHoneyStocks = bee.FilledHoneyStocks();
+
         //Объект относится к пчёлам? Эта пчела из этого улья? Её хранилище мёда заполнено?
-        if (bee != null && _stateSpawningBees.CreateObjects.Contains(collision.gameObject) && bee.FilledHoneyStocks())
+        if (bee != null && _stateSpawningBees.CreateObjects.Contains(collision.gameObject) && filledHoneyStocks)
         {
             beeInHives = BeeInHives(collision.gameObject, bee);
             StartCoroutine(beeInHives);
@@ -42,9 +69,13 @@ public class CollectGiveHoneyHive : MonoBehaviour
 
         beeGmObj.SetActive(false);
 
-        yield return new WaitForSeconds(_parameters.timeBeesGiveHoney);
+        //Если пчелы возвращаются в улей на постоянно
+        if (!_collectBees)
+        {
+            yield return new WaitForSeconds(_parameters.timeBeesGiveHoney);
 
-        if (_hive.СurrentHoneyStocks < _parameters.maxHoney)
-            beeGmObj.SetActive(true);
+            if (_hive.СurrentHoneyStocks < _parameters.maxHoney)
+                beeGmObj.SetActive(true);
+        }
     }
 }
