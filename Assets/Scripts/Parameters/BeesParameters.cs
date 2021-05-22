@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Bee", menuName = "Apiary/Bee", order = 2)]
-public class BeesParameters : ScriptableObject
+public class BeesParameters : FlyingInsectParameters
 {
-    [SerializeField]
-    public float speed = 5;
     [SerializeField]
     public float maxHoneyStocks = 8;
     [SerializeField]

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Entities\Bees\CollectGiveHoneyBee.cs" />
     <Compile Include="Assets\Scripts\Entities\Bees\MovementBee.cs" />
     <Compile Include="Assets\Scripts\Entities\Flowers\Flowers.cs" />
+    <Compile Include="Assets\Scripts\Entities\FlyingInsect.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\CollectGiveHoneyHive.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\Hive.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\SpawningBees.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\Menu\SettingsMenu.cs" />
     <Compile Include="Assets\Scripts\Parameters\BeesParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\FlowerParameters.cs" />
+    <Compile Include="Assets\Scripts\Parameters\FlyingInsectParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\HiveParameters.cs" />
     <Compile Include="Assets\Scripts\Parameters\ObjectAndFloat.cs" />
     <Compile Include="Assets\Scripts\Parameters\SpawningDifferentObjectsParameters.cs" />
