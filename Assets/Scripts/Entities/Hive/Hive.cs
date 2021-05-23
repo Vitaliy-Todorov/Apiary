@@ -58,7 +58,7 @@ public class Hive : MonoBehaviour, IOnClick
 
             Bee bee = beeGmObj.GetComponent<Bee>();
             bee._stateHoneyGetter.OnEnter();
-            bee._stateMovement.OnEnter<HoneyGoTo>();
+            bee._stateMovement.OnEnter<GoToHoney>();
         }
     }
 

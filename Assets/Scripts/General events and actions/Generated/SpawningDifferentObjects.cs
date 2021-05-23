@@ -56,6 +56,7 @@ public class SpawningDifferentObjects : MonoBehaviour, IState
                 //Проверяем нужно ли ещё создавать пчёл и инициализирован ли список spawningObject
                 if (createObjects.Count < baseParameters.maxNumberObject && spawningObject.Count != 0)
                 {
+                    //Выбираем из списка spawningObject какой объект создать с указанной в spawningObject вероятностью
                     int prefabIndex = ChooseIndexObject(spawningObject);
                     GameObject generatedObject = Instantiate(spawningObject[prefabIndex].spawnObject, SpawnPoint(), Quaternion.identity);
                     //Отправляем созданному объекту ссылку на создателя и prefab по которому был создан объект

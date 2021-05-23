@@ -56,6 +56,18 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
         freeFlowers.Remove(gameObject);
     }
 
+    /*private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("1");
+        if (honeyGetters.Contains(other.gameObject))
+        {
+            Debug.Log("2");
+            canCollectHoney = true;
+            honeyGetters.Remove(other.gameObject);
+            freeFlowers.Add(gameObject);
+        }
+    }*/
+
     private void OnCollisionExit(Collision collision)
     {
         if (honeyGetters.Contains(collision.gameObject))

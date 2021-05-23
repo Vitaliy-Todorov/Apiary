@@ -40,11 +40,11 @@ public class SpawningObject : MonoBehaviour
             spawnPoint = SpawnPoint();
             //Проверяем наличие соседей (соприкосновений с ними)
             if (Physics.OverlapBox(
-                spawnPoint, 
-                new Vector3(parameters.distance, parameters.distance, parameters.distance), 
-                Quaternion.identity, 
-                LayerMask.GetMask(parameters.neighborLayer)
-                ).Length == 0)
+                    spawnPoint, 
+                    new Vector3(parameters.distance, parameters.distance, parameters.distance), 
+                    Quaternion.identity, 
+                    LayerMask.GetMask(parameters.neighborLayer)
+                    ).Length == 0)
             {
                 GameObject generatedObject = Instantiate(parameters.createObjectInStance, spawnPoint, Quaternion.identity);
                 //Отправляем созданному объекту ссылку на создателя
@@ -54,6 +54,7 @@ public class SpawningObject : MonoBehaviour
                 //Переименовываем, чтобы различать объекты
                 generatedObject.name = generatedObject.name + createObjects.Count;
 
+                //Если нужжно передаём положение камеры созданному объекту
                 if (generatedObject.GetComponent<IAddCamera>() != null)
                     generatedObject.GetComponent<IAddCamera>().AddCamera(cameraForBar);
             }
@@ -71,7 +72,6 @@ public class SpawningObject : MonoBehaviour
     Vector3 SpawnPoint()
     {
         //Получаем размеры Mesh (думаю это можно назвать физическим пространством объекта). Это нужно, что бы получить ограничения места респаума
-        //Vector3 sizeLocation = parameters.spawnerLocation.GetComponent<MeshFilter>().sharedMesh.bounds.size;
         float x = (parameters.spawnerLocationX) * Random.Range(-.5f, .5f);
         float z = (parameters.spawnerLocationZ) * Random.Range(-.5f, .5f);
 

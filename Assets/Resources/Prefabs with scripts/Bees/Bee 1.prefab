@@ -1604,6 +1604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parameters: {fileID: 11400000, guid: 54f933164c5e95f4daa0307b974c3c51, type: 2}
-  "\u0441urrentHoneyStocks": 0
+  _spawningThisBee: {fileID: 0}
   _stateMovement: {fileID: 0}
+  parameters: {fileID: 11400000, guid: 54f933164c5e95f4daa0307b974c3c51, type: 2}
+  "\u0441urrentHoneyStocks": 0
   _stateHoneyGetter: {fileID: 0}
