@@ -46,7 +46,7 @@ public class CollectGiveHoneyBee : MonoBehaviour, HoneyConsumer, IState
             _bee.StartCoroutine(coroutine);
         }
         else if (_bee.СurrentHoneyStocks >= _parameters.maxHoneyStocks)
-            _bee._stateMovement.OnEnter<GoTo>();
+            _bee._stateMovement.OnEnterGoTo();
     }
 
     public IEnumerator ConsumeHoney(IHoneyGiver honeyGiver, float waitTime)
@@ -65,20 +65,20 @@ public class CollectGiveHoneyBee : MonoBehaviour, HoneyConsumer, IState
             }
             catch
             {
-                _bee._stateMovement.OnEnter<GoToHoney>();
+                _bee._stateMovement.OnEnterGoToHoney();
                 yield break;
             }
 
             //Проверяем заполненность хранилища мёда пчелы, если оно заполнено летим в улей Hive
             if (_bee.СurrentHoneyStocks >= _parameters.maxHoneyStocks)
             {
-                _bee._stateMovement.OnEnter<GoTo>();
+                _bee._stateMovement.OnEnterGoTo();
                 yield break;
             }
             //Проверяем существует ли дающий мёд, если нет, дальше ищем мёд
             else if (honeyGiver.IsDestroyed())
             {
-                _bee._stateMovement.OnEnter<GoToHoney>();
+                _bee._stateMovement.OnEnterGoToHoney();
                 yield break;
             }
 

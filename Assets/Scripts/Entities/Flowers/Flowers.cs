@@ -109,7 +109,8 @@ public class Flowers : MonoBehaviour, IHoneyGiver, IGeneratedObject, IAddCamera
     {
         ConnectToAbsorptionHoney(whosAsking);
 
-        if (!(honeyGetters.Contains(whosAsking) || !canCollectHoney))
+        Debug.Log("gameObject: " + whosAsking + " Contains: " + honeyGetters.Contains(whosAsking) + " canCollectHoney: " + canCollectHoney);
+        if (!(honeyGetters.Contains(whosAsking) || canCollectHoney))
             throw new ArgumentException("This object can't take honey. The seats are occupied or it doesn't have an IHoneyConsumer");
 
         if (сurrentHoneyStocks - honey >= 0)

@@ -12,7 +12,7 @@ public abstract class FlyingInsect : MonoBehaviour
     //Куда возвращаться по умолчанию 
     public GameObject _spawningThisBee;
     [NonSerialized]
-    public MovementBees _stateMovement;
+    public MovementInsect _stateMovement;
 
     public string Id { get => _id; }
 
@@ -22,15 +22,9 @@ public abstract class FlyingInsect : MonoBehaviour
         _id = id;
     }
 
-    protected void Awake()
-    {
-        _stateMovement = gameObject.AddComponent<MovementBees>();
-        _stateMovement.Init(this);
-    }
+    //Основное рабочее состояние
+    public abstract void WorkingGoTo();
 
-    protected void Start()
-    {
-        //Задаём точку возврата
-        _stateMovement.OnEnter<GoTo>(_spawningThisBee.transform.position);
-    }
+    //Возвращение в некую ключевую точку
+    public abstract void GoTo();
 }

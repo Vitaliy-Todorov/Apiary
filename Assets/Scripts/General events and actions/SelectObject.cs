@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Клик по объекту
 public class SelectObject : MonoBehaviour
 {
     void Update()

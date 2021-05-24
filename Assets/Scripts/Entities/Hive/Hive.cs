@@ -39,12 +39,11 @@ public class Hive : MonoBehaviour, IOnClick
         //Отключаем проверку заполенности резервуара пчёл и их выход из улья
         _stateCollectGiveHoneyHive.OnEnter(true);
 
-        foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
+        foreach (GameObject insectGmObj in _stateSpawningBees.CreateObjects)
         {
-            Bee bee = beeGmObj.GetComponent<Bee>();
+            FlyingInsect insect = insectGmObj.GetComponent<FlyingInsect>();
 
-            bee._stateHoneyGetter.OnExit();
-            bee._stateMovement.OnEnter<GoTo>();
+            insect.GoTo();
         }
     }
 
@@ -52,13 +51,12 @@ public class Hive : MonoBehaviour, IOnClick
     {
         _stateCollectGiveHoneyHive.OnEnter(false);
 
-        foreach (GameObject beeGmObj in _stateSpawningBees.CreateObjects)
+        foreach (GameObject insectGmObj in _stateSpawningBees.CreateObjects)
         {
-            beeGmObj.SetActive(true);
+            insectGmObj.SetActive(true);
 
-            Bee bee = beeGmObj.GetComponent<Bee>();
-            bee._stateHoneyGetter.OnEnter();
-            bee._stateMovement.OnEnter<GoToHoney>();
+            FlyingInsect insect = insectGmObj.GetComponent<FlyingInsect>();
+            insect.WorkingGoTo();
         }
     }
 

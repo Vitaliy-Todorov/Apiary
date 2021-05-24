@@ -5,11 +5,20 @@ public class Drone : FlyingInsect, IGeneratedObject
 {
     new public DroneParameters parameters;
 
-    // Start is called before the first frame update
-    new void Start()
+    public override void GoTo()
     {
-        base.Start();
-        //Идём к ближайшему свободному цветку
-        _stateMovement.OnEnter<GoToRandom>(parameters.trafficArea);
+        _stateMovement.OnEnterGoTo();
+    }
+
+    public override void WorkingGoTo()
+    {
+        _stateMovement.OnEnterGoToRandom();
+    }
+
+    protected void Awake()
+    {
+        _stateMovement = gameObject.AddComponent<MovementInsect>();
+        _stateMovement.Init((IGoToParameters)parameters);
+        _stateMovement.Init((IGoToRandomParameters)parameters);
     }
 }

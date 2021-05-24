@@ -12,13 +12,31 @@ public class Bee : FlyingInsect, IGeneratedObject
     //Позже избавиться от этого, используется в HoneyConsumer
     public float СurrentHoneyStocks { get => сurrentHoneyStocks; set => сurrentHoneyStocks = value; }
 
-    new void Start()
+    public override void WorkingGoTo()
     {
-        base.Start();
-        //Идём к ближайшему свободному цветку
-        _stateMovement.OnEnter<GoToHoney>();
+        _stateHoneyGetter.OnEnter();
+        _stateMovement.OnEnterGoToHoney();
+    }
+
+    public override void GoTo()
+    {
+        _stateHoneyGetter.OnExit();
+        _stateMovement.OnEnterGoTo();
+    }
+
+    protected void Awake()
+    {
+        _stateMovement = gameObject.AddComponent<MovementInsect>();
+        _stateMovement.Init((GoToParameters) parameters);
+        _stateMovement.Init(parameters);
+
         _stateHoneyGetter = gameObject.AddComponent<CollectGiveHoneyBee>();
         _stateHoneyGetter.Init(this);
+    }
+
+    void Start()
+    {
+        _stateMovement.OnEnterGoToHoney();
     }
 
     public float GettHoney(float gettHoney)
@@ -27,7 +45,7 @@ public class Bee : FlyingInsect, IGeneratedObject
         {
             float honey = сurrentHoneyStocks;
             сurrentHoneyStocks = 0;
-            _stateMovement.OnEnter<GoToHoney>();
+            _stateMovement.OnEnterGoToHoney();
             return honey;
         }
         сurrentHoneyStocks -= gettHoney;
@@ -38,7 +56,7 @@ public class Bee : FlyingInsect, IGeneratedObject
     {
         float honey = сurrentHoneyStocks;
         сurrentHoneyStocks = 0;
-        _stateMovement.OnEnter<GoToHoney>();
+        _stateMovement.OnEnterGoToHoney();
         return honey;
     }
 

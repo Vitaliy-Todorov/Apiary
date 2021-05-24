@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bee
   m_EditorClassIdentifier: 
   speed: 5
+  weMove: {fileID: 6428658361381536069, guid: 2ad83784d5fc34b4f9659dd9f56963a5, type: 3}
   maxHoneyStocks: 18
-  getHoney: 9
+  getHoney: 6
   getHoneyTime: 1

@@ -15,4 +15,4 @@ MonoBehaviour:
   id: bee 1
   spawnObject: {fileID: 2945326286204214599, guid: 34db6bb9574ef7044b091e12bc0ae496,
     type: 3}
-  probs: 3
+  probs: 0

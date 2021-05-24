@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ab301f9c918ef7469c7cf5008caa5d7, type: 3}
-  m_Name: ObjectAndFloat
+  m_Name: DroneAndProbs
   m_EditorClassIdentifier: 
-  id: 
-  spawnObject: {fileID: 0}
-  probs: 0
+  id: Drone
+  spawnObject: {fileID: 8728712173626311455, guid: f5d8cdc36b3c0ef428f256a9f9fe5695,
+    type: 3}
+  probs: 1
