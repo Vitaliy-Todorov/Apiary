@@ -12,7 +12,7 @@ public class MovementInsect : MonoBehaviour, IState
     GoToHoney _honeyGoTo;
     GoTo _goTo;
     GoToRandom _goToRandom;
-    IFlyingInsectParameters _parameters;
+    IHiveDwellerParameters _parameters;
 
     bool updateInFixedUpdate;
     Vector3 _moveTo;

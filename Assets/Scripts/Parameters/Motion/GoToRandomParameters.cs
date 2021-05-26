@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "GoToRandom", menuName = "Apiary/GoToRandom", order = 2)]
-public class GoToRandomParameters : FlyingInsectParameters, IGoToRandomParameters
+public class GoToRandomParameters : SpeedParameters, IGoToRandomParameters
 {
     [Header("Высота (y) постоянна")]
     [SerializeField]

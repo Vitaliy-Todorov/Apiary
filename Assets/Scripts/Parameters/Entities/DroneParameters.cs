@@ -1,10 +1,19 @@
 ﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Drone", menuName = "Apiary/Drone", order = 2)]
-public class DroneParameters : GoToRandomParameters, IGoToParameters
+public class DroneParameters : GoToParameters, IGoToRandomParameters
 {
-    public GameObject GetWeMove()
+    [Header("Высота (y) постоянна")]
+    [SerializeField]
+    public Vector3 trafficArea = new Vector3(5, 0, 5);
+
+    public GameObject GetCenterOfTrafficArea()
     {
-        return centerOfTrafficArea;
+        return weMove;
+    }
+
+    public Vector3 GetTrafficArea()
+    {
+        return trafficArea;
     }
 }

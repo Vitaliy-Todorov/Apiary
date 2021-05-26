@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGoToParameters: IFlyingInsectParameters
+public interface IGoToParameters: IHiveDwellerParameters
 {
+    void SetWeMove(GameObject weMove);
     GameObject GetWeMove();
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IGoToRandomParameters: IFlyingInsectParameters
+public interface IGoToRandomParameters: IHiveDwellerParameters
 {
 
     Vector3 GetTrafficArea();

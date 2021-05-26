@@ -9,8 +9,8 @@ public class Hive : MonoBehaviour, IOnClick
     GameObject hiveMenu;
     HiveMenu menu;
 
-    SpawningBees _stateSpawningBees;
-    CollectGiveHoneyHive _stateCollectGiveHoneyHive;
+    public SpawningBees _stateSpawningBees;
+    public CollectGiveHoneyHive _stateCollectGiveHoneyHive;
 
     float currentHoneyStocks = 0;
 
@@ -41,7 +41,7 @@ public class Hive : MonoBehaviour, IOnClick
 
         foreach (GameObject insectGmObj in _stateSpawningBees.CreateObjects)
         {
-            FlyingInsect insect = insectGmObj.GetComponent<FlyingInsect>();
+            HiveDweller insect = insectGmObj.GetComponent<HiveDweller>();
 
             insect.GoTo();
         }
@@ -55,7 +55,7 @@ public class Hive : MonoBehaviour, IOnClick
         {
             insectGmObj.SetActive(true);
 
-            FlyingInsect insect = insectGmObj.GetComponent<FlyingInsect>();
+            HiveDweller insect = insectGmObj.GetComponent<HiveDweller>();
             insect.WorkingGoTo();
         }
     }

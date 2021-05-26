@@ -12,4 +12,7 @@ public class SpawningDifferentObjectsParameters : ScriptableObject
     [Header("Список типа ObjectAndFloat, с объектом и вероятностью")]
     [SerializeField]
     public List<ObjectAndFloat> spawningObject = new List<ObjectAndFloat>();
+
+    [SerializeField]
+    public Vector3 areaSpawning;
 }

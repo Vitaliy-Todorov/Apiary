@@ -4563,7 +4563,6 @@ GameObject:
   - component: {fileID: 1977564942}
   - component: {fileID: 1977564944}
   - component: {fileID: 1977564943}
-  - component: {fileID: 1977564945}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -4626,25 +4625,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977564941}
   m_CullTransparentMesh: 0
---- !u!114 &1977564945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1977564941}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f68108fdea3340c45a5874e6e9cb3923, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullScreenToggle: {fileID: 1814756458}
-  audioSlider: {fileID: 0}
-  audioMixer: {fileID: 0}
-  graphicsQualityDropdown: {fileID: 0}
-  resolutionDropdown: {fileID: 1210210596}
-  mainMenuButton: {fileID: 990020164}
-  mainMenuObj: {fileID: 1894565231}
 --- !u!1 &1983698201
 GameObject:
   m_ObjectHideFlags: 0

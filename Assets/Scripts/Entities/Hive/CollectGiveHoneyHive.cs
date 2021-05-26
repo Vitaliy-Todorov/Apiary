@@ -42,7 +42,7 @@ public class CollectGiveHoneyHive : MonoBehaviour, IState
         enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         Bee bee = collision.gameObject.GetComponent<Bee>();
 
@@ -57,6 +57,12 @@ public class CollectGiveHoneyHive : MonoBehaviour, IState
             beeInHives = BeeInHives(collision.gameObject, bee);
             StartCoroutine(beeInHives);
         }
+
+
+        HiveDweller hiveDweller = collision.gameObject.GetComponent<HiveDweller>();
+        //Объект относится к пчёлам? Эта пчела из этого улья? Объявлен сбор??
+        if (hiveDweller != null && _stateSpawningBees.CreateObjects.Contains(collision.gameObject) && _collectBees)
+            collision.gameObject.SetActive(false);
 
         _menu.SetBees(_stateSpawningBees.CreateObjects.Count);
     }

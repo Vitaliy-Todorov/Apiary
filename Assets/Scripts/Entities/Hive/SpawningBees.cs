@@ -14,16 +14,6 @@ public class SpawningBees : SpawningDifferentObjects, IState
         _parameters = parameters;
     }
 
-    public void OnEnter()
-    {
-        enabled = true;
-    }
-
-    public void OnExit()
-    {
-        enabled = false;
-    }
-
     void Start()
     {
         //Создаём спавнер
@@ -32,8 +22,8 @@ public class SpawningBees : SpawningDifferentObjects, IState
         StartCoroutine(createObject);
     }
 
-    protected override Vector3 SpawnPoint()
+    /*protected override Vector3 SpawnPoint()
     {
         return gameObject.transform.position;
-    }
+    }*/
 }

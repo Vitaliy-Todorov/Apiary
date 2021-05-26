@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //HoneyConsumer нужен что бы цветок понимал, что у него берут мёд
-public class Bee : FlyingInsect, IGeneratedObject
+public class Bee : HiveDweller, IGeneratedObject
 {
     new public BeesParameters parameters;
     [SerializeField]
