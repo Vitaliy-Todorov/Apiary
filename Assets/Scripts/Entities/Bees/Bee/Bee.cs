@@ -24,18 +24,14 @@ public class Bee : HiveDweller, IGeneratedObject
         _stateMovement.OnEnterGoTo();
     }
 
-    protected void Awake()
+    void Start()
     {
         _stateMovement = gameObject.AddComponent<MovementInsect>();
-        _stateMovement.Init((GoToParameters) parameters);
+        _stateMovement.Init((GoToParameters)parameters);
         _stateMovement.Init(parameters);
 
         _stateHoneyGetter = gameObject.AddComponent<CollectGiveHoneyBee>();
         _stateHoneyGetter.Init(this);
-    }
-
-    void Start()
-    {
         _stateMovement.OnEnterGoToHoney();
     }
 

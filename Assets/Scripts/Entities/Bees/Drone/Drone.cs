@@ -15,12 +15,9 @@ public class Drone : HiveDweller, IGeneratedObject
         _stateMovement.OnEnterGoToRandom();
     }
 
-    protected void Awake()
-    {
-        _stateMovement = gameObject.AddComponent<MovementInsect>();
-    }
     private void Start()
     {
+        _stateMovement = gameObject.AddComponent<MovementInsect>();
         _stateMovement.Init((IGoToParameters)parameters);
         _stateMovement.Init((IGoToRandomParameters)parameters);
     }

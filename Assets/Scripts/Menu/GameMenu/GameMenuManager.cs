@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameMenuManager : MonoBehaviour
+public class GameMenuManager : MonoBehaviour, IState
 {
     [SerializeField]
     public Hive hives;
@@ -21,6 +22,10 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField]
     public GameObject statisticsMenu;
     [SerializeField]
+    public GameObject contentScrollView;
+    [SerializeField]
+    public GameObject menuHiveStatistics;
+    [SerializeField]
     public Text allHoney;
     [SerializeField]
     public Text allBess;
@@ -32,7 +37,21 @@ public class GameMenuManager : MonoBehaviour
     GameMenu gameMenuState;
     StatisticsMenu statisticsMenuState;
 
-    private void Start()
+    public void OnEnter()
+    {
+        gameObject.SetActive(true);
+        statisticsMenuState.OnExit();
+        gameMenuState.OnEnter();
+    }
+
+    public void OnExit()
+    {
+        gameMenuState.OnExit();
+        statisticsMenuState.OnEnter();
+        gameObject.SetActive(false);
+    }
+
+    private void Awake()
     {
         Time.timeScale = 0;
 
@@ -59,7 +78,6 @@ public class GameMenuManager : MonoBehaviour
     {
         gameMenuState.OnExit();
         statisticsMenuState.OnEnter();
-        statisticsMenuState.SetValue();
     }
 
     void ExitPressed()
@@ -71,5 +89,20 @@ public class GameMenuManager : MonoBehaviour
     {
         statisticsMenuState.OnExit();
         gameMenuState.OnEnter();
+    }
+
+    public GameObject InstantiateMenuHiveStatistics()
+    {
+        return Instantiate(menuHiveStatistics, contentScrollView.transform);
+    }
+
+    public void DestroyMenuHiveStatistics(List<GameObject> menuHiveStatisticsObjs)
+    {
+        for (int i = 0; menuHiveStatisticsObjs.Count > 0; i++)
+        {
+            Destroy(menuHiveStatisticsObjs[i]);
+            menuHiveStatisticsObjs.RemoveAt(i);
+            i--;
+        }
     }
 }

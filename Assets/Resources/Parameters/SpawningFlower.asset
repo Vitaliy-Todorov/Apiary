@@ -15,8 +15,8 @@ MonoBehaviour:
   time: 1
   appearsAtTime: 50
   maxNumberObject: 50
-  spawnerLocationX: 8
-  spawnerLocationZ: 8
+  spawnerLocationX: 16
+  spawnerLocationZ: 16
   createObjectInStance: {fileID: 2609452864917036527, guid: 7bbcea706b75fed4aa69651f11fa0f37,
     type: 3}
   distance: 0.7

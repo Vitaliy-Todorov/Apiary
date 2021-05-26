@@ -72,7 +72,7 @@
     <Compile Include="Assets\Scripts\Entities\Bees\MovementState.cs" />
     <Compile Include="Assets\Scripts\Entities\Flowers\Flowers.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\CollectGiveHoneyHive.cs" />
-    <Compile Include="Assets\Scripts\Entities\Hive\CountingBees.cs" />
+    <Compile Include="Assets\Scripts\Entities\Hive\CountingHiveDweller.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\DeathBees.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\Hive.cs" />
     <Compile Include="Assets\Scripts\Entities\Hive\SpawningBees.cs" />
@@ -95,7 +95,8 @@
     <Compile Include="Assets\Scripts\Menu\GameMenu\CallGameMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\GameMenu\GameMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\GameMenu\GameMenuManager.cs" />
-    <Compile Include="Assets\Scripts\Menu\GameMenu\StatisticsMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu\GameMenu\StatisticsMenu\MenuHiveStatistics.cs" />
+    <Compile Include="Assets\Scripts\Menu\GameMenu\StatisticsMenu\StatisticsMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\Hive\ActionsHive.cs" />
     <Compile Include="Assets\Scripts\Menu\Hive\HiveMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\Hive\InformationHive.cs" />
