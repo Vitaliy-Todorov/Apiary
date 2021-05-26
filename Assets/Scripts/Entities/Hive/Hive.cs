@@ -11,6 +11,7 @@ public class Hive : MonoBehaviour, IOnClick
 
     public SpawningBees _stateSpawningBees;
     public CollectGiveHoneyHive _stateCollectGiveHoneyHive;
+    public DeathBees _stateDeathBees;
 
     float currentHoneyStocks = 0;
 
@@ -32,6 +33,9 @@ public class Hive : MonoBehaviour, IOnClick
         //Создаём собирателя мёда
         _stateCollectGiveHoneyHive = gameObject.AddComponent<CollectGiveHoneyHive>();
         _stateCollectGiveHoneyHive.Init(this, parameters, _stateSpawningBees, menu);
+        //Умирание пчёл за еденицу времени
+        _stateDeathBees = gameObject.AddComponent<DeathBees>();
+        _stateDeathBees.Init(this, parameters.deathBees, menu);
     }
 
     public void CollectBeesInHive()

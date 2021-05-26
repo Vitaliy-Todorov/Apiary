@@ -8,4 +8,6 @@ public class HiveParameters : SpawningDifferentObjectsParameters
     public float maxHoney;
     [SerializeField]
     public float timeBeesGiveHoney;
+    [SerializeField]
+    public DeathBeesParameters deathBees;
 }

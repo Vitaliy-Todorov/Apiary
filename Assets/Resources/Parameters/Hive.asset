@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Hive
   m_EditorClassIdentifier: 
   time: 1
-  appearsAtTime: 1
-  maxNumberObject: 10
+  appearsAtTime: 100
+  maxNumberObject: 600
   spawningObject:
   - {fileID: 11400000, guid: a2a423993dc764545b61181b832b77a6, type: 2}
   - {fileID: 11400000, guid: c251c41e69974384ea18d98b7adce5cd, type: 2}
   areaSpawning: {x: 0.5, y: 0, z: 0.5}
-  maxHoney: 600
+  maxHoney: 1000
   timeBeesGiveHoney: 3
+  deathBees: {fileID: 11400000, guid: c935bd14d98f7f64dbfaac7501bca12f, type: 2}
