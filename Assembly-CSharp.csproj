@@ -91,6 +91,7 @@
     <Compile Include="Assets\Scripts\General events and actions\SelectObject.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Spawning\IGeneratedObject.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Spawning\SpawningDifferentObjects.cs" />
+    <Compile Include="Assets\Scripts\General events and actions\Spawning\SpawningDifferentObjects1.cs" />
     <Compile Include="Assets\Scripts\General events and actions\Spawning\SpawningObject.cs" />
     <Compile Include="Assets\Scripts\Menu\GameMenu\CallGameMenu.cs" />
     <Compile Include="Assets\Scripts\Menu\GameMenu\GameMenu.cs" />
