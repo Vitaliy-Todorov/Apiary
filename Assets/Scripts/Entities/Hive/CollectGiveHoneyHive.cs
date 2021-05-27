@@ -67,9 +67,14 @@ public class CollectGiveHoneyHive : MonoBehaviour, IState
     }
 
     IEnumerator BeeInHives(GameObject beeGmObj, Bee bee)
-    {
+    {/*
         if (_hive.СurrentHoneyStocks < _parameters.maxHoney)
+            _hive.СurrentHoneyStocks += bee.GettHoney();*/
+
+        if (bee.СurrentHoneyStocks < _parameters.maxHoney - _hive.СurrentHoneyStocks)
             _hive.СurrentHoneyStocks += bee.GettHoney();
+        else
+            _hive.СurrentHoneyStocks = _parameters.maxHoney;
         _menu.SetHoney(_hive.СurrentHoneyStocks);
 
         beeGmObj.SetActive(false);

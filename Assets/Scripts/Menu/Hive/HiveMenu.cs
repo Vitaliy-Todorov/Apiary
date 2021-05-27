@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class HiveMenu : MonoBehaviour
 {
     [SerializeField]
+    Text title;
+    [SerializeField]
     Button exitButton;
 
     [Header("Меню действий")]
@@ -57,20 +59,11 @@ public class HiveMenu : MonoBehaviour
         actionsHiveState.OnExit();
     }
 
-    void CollectBeesInHive()
-    {
-        hive.CollectBeesInHive();
-    }
+    void CollectBeesInHive() => hive.CollectBeesInHive();
 
-    void SendForСollection()
-    {
-        hive.SendForСollection();
-    }
+    void SendForСollection() => hive.SendForСollection();
 
-    void ExitPressed()
-    {
-        gameObject.SetActive(false);
-    }
+    void ExitPressed() => gameObject.SetActive(false);
 
     public void MaxValue(float maxHoney, int maxBees)
     {
@@ -78,13 +71,9 @@ public class HiveMenu : MonoBehaviour
         this.maxBees = maxBees;
     }
 
-    public void SetHoney(float health)
-    {
-        honey.value = health;
-    }
+    public void SetTitle(string title) => this.title.text = title;
 
-    public void SetBees(int bee)
-    {
-        bees.text = bee + "/" + maxBees;
-    }
+    public void SetHoney(float health) => honey.value = health;
+
+    public void SetBees(int bee) => bees.text = bee + "/" + maxBees;
 }

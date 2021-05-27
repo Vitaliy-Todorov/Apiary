@@ -41,6 +41,7 @@ public class Hive : MonoBehaviour, IOnClick
         //Подключаем меню улья
         menu = hiveMenu.GetComponent<HiveMenu>();
         menu.MaxValue(parameters.maxHoney, parameters.maxNumberObject);
+        menu.SetTitle(gameObject.name);
         menu.SetBees(0);
         menu.SetHoney(0);
 

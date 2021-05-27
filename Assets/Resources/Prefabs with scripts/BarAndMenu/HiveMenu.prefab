@@ -1316,6 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a411305a7b0b8c4448ed68a1f5ba2d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  title: {fileID: 6273397347555664736}
   exitButton: {fileID: 6273397346233031988}
   actionsHive: {fileID: 6981104389963119867}
   collectBeesInHive: {fileID: 1725897555742873843}
@@ -1410,7 +1411,7 @@ GameObject:
   - component: {fileID: 6273397347555664737}
   - component: {fileID: 6273397347555664736}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Hive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,7 +1475,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Hive
+  m_Text: 
 --- !u!1 &6273397347627507884
 GameObject:
   m_ObjectHideFlags: 0
