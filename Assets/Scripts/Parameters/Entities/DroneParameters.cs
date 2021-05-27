@@ -9,7 +9,7 @@ public class DroneParameters : GoToParameters, IGoToRandomParameters
 
     public GameObject GetCenterOfTrafficArea()
     {
-        return weMove;
+        throw new System.NotImplementedException();
     }
 
     public Vector3 GetTrafficArea()

@@ -21,9 +21,4 @@ public class SpawningBees : SpawningDifferentObjects, IState
         createObject = CreateObject();
         StartCoroutine(createObject);
     }
-
-    /*protected override Vector3 SpawnPoint()
-    {
-        return gameObject.transform.position;
-    }*/
 }

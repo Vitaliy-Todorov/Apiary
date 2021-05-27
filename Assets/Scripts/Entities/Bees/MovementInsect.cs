@@ -28,20 +28,20 @@ public class MovementInsect : MonoBehaviour, IState
         StopCoroutine(moveToCoroutine);
     }
 
-    public void Init(IGoToParameters parameters)
+    public void Init(GameObject weMove, IGoToParameters parameters)
     {
         _parameters = parameters;
-        _goTo = new GoTo(gameObject, parameters.GetWeMove());
+        _goTo = new GoTo(gameObject, weMove);
         currentState = _goTo;
         moveToCoroutine = MoveToCoroutine();
         StartCoroutine(moveToCoroutine);
         updateInFixedUpdate = false;
     }
 
-    public void Init(IGoToRandomParameters parameters)
+    public void Init(GameObject сenterOfTrafficArea,  IGoToRandomParameters parameters)
     {
         _parameters = parameters;
-        _goToRandom = new GoToRandom(gameObject, parameters);
+        _goToRandom = new GoToRandom(gameObject, сenterOfTrafficArea, parameters);
         currentState = _goToRandom;
         moveToCoroutine = MoveToCoroutine();
         StartCoroutine(moveToCoroutine);
@@ -68,7 +68,6 @@ public class MovementInsect : MonoBehaviour, IState
     {
         enabled = true;
         currentState = _goTo;
-        updateInFixedUpdate = false;
         updateInFixedUpdate = true;
         StopCoroutine(moveToCoroutine);
     }

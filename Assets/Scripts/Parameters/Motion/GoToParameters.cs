@@ -3,16 +3,13 @@
 [CreateAssetMenu(fileName = "GoTo", menuName = "Apiary/GoTo", order = 2)]
 public class GoToParameters : SpeedParameters, IGoToParameters
 {
-    [SerializeField]
-    public GameObject weMove;
-
     public GameObject GetWeMove()
     {
-        return weMove;
+        throw new System.NotImplementedException();
     }
 
     public void SetWeMove(GameObject weMove)
     {
-        this.weMove = weMove;
+        throw new System.NotImplementedException();
     }
 }

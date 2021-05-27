@@ -67,10 +67,10 @@ public class GoToRandom : MovementState
     public Vector3 _trafficArea;
     public GameObject _centerOfTrafficArea;
 
-    public GoToRandom(GameObject bee, IGoToRandomParameters parameters)
+    public GoToRandom(GameObject bee, GameObject сenterOfTrafficArea, IGoToRandomParameters parameters)
     {
         _bee = bee;
-        _centerOfTrafficArea = parameters.GetCenterOfTrafficArea();
+        _centerOfTrafficArea = сenterOfTrafficArea;
         _trafficArea = parameters.GetTrafficArea();
     }
 
@@ -86,8 +86,8 @@ public class GoToRandom : MovementState
         //Высота постоянна
         offset.y = _trafficArea.y;
 
-        offset.x = _trafficArea.x * UnityEngine.Random.Range(-.5f, .5f);
-        offset.z = _trafficArea.z * UnityEngine.Random.Range(-.5f, .5f);
+        offset.x = _trafficArea.x * Random.Range(-.5f, .5f);
+        offset.z = _trafficArea.z * Random.Range(-.5f, .5f);
 
         //Точка в области - координата объекта
         return (offset + _centerOfTrafficArea.transform.position) - _bee.transform.position;

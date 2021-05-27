@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class HiveDweller : MonoBehaviour
+public abstract class HiveDweller : MonoBehaviour, IGeneratedObject
 {
     [SerializeField]
     public GoToParameters parameters;
+    GameObject weMove;
     //Нигде не использую, но мало ли
-    protected string _id;
+    protected string _id; 
 
     [NonSerialized]
     //Куда возвращаться по умолчанию 
@@ -14,13 +15,20 @@ public abstract class HiveDweller : MonoBehaviour
     [NonSerialized]
     public MovementInsect _stateMovement;
 
+    public GameObject WeMove { get => weMove; }
     public string Id { get => _id; }
 
     public void Init(GameObject spawningThisBee, string id)
     {
-        parameters.SetWeMove(spawningThisBee);
+        weMove = spawningThisBee;
         _spawningThisBee = spawningThisBee;
         _id = id;
+    }
+
+    public void Start()
+    {
+        _stateMovement = gameObject.AddComponent<MovementInsect>();
+        _stateMovement.Init(weMove, (GoToParameters)parameters);
     }
 
     //Основное рабочее состояние

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //HoneyConsumer нужен что бы цветок понимал, что у него берут мёд
-public class Bee : HiveDweller, IGeneratedObject
+public class Bee : HiveDweller
 {
     new public BeesParameters parameters;
     [SerializeField]
@@ -24,10 +24,9 @@ public class Bee : HiveDweller, IGeneratedObject
         _stateMovement.OnEnterGoTo();
     }
 
-    void Start()
+    new void Start()
     {
-        _stateMovement = gameObject.AddComponent<MovementInsect>();
-        _stateMovement.Init((GoToParameters)parameters);
+        base.Start();
         _stateMovement.Init(parameters);
 
         _stateHoneyGetter = gameObject.AddComponent<CollectGiveHoneyBee>();

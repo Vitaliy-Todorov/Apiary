@@ -66,12 +66,12 @@ public class Hive : MonoBehaviour, IOnClick
     {
         _stateCollectGiveHoneyHive.OnEnter(false);
 
-        foreach (GameObject insectGmObj in _stateSpawningBees.CreateObjects)
+        foreach (GameObject hiveDwellerGmObj in _stateSpawningBees.CreateObjects)
         {
-            insectGmObj.SetActive(true);
+            hiveDwellerGmObj.SetActive(true);
 
-            HiveDweller insect = insectGmObj.GetComponent<HiveDweller>();
-            insect.WorkingGoTo();
+            HiveDweller hiveDweller = hiveDwellerGmObj.GetComponent<HiveDweller>();
+            hiveDweller.WorkingGoTo();
         }
     }
 

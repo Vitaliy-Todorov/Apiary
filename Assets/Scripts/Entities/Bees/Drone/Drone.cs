@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 //HoneyConsumer нужен что бы цветок понимал, что у него берут мёд
-public class Drone : HiveDweller, IGeneratedObject
+public class Drone : HiveDweller
 {
     new public DroneParameters parameters;
 
@@ -15,10 +15,12 @@ public class Drone : HiveDweller, IGeneratedObject
         _stateMovement.OnEnterGoToRandom();
     }
 
-    private void Start()
+    new private void Start()
     {
+        base.Start();
+        /*
         _stateMovement = gameObject.AddComponent<MovementInsect>();
-        _stateMovement.Init((IGoToParameters)parameters);
-        _stateMovement.Init((IGoToRandomParameters)parameters);
+        _stateMovement.Init((IGoToParameters)parameters);*/
+        _stateMovement.Init(WeMove, (IGoToRandomParameters)parameters);
     }
 }

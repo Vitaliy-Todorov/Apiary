@@ -79,7 +79,7 @@ public class CollectGiveHoneyHive : MonoBehaviour, IState
         {
             yield return new WaitForSeconds(_parameters.timeBeesGiveHoney);
 
-            if (_hive.СurrentHoneyStocks < _parameters.maxHoney)
+            if (beeGmObj != null && _hive.СurrentHoneyStocks < _parameters.maxHoney)
                 beeGmObj.SetActive(true);
         }
     }
