@@ -53,12 +53,22 @@ public class SpawningDifferentObjects1 : MonoBehaviour, IState
             DeleteDestroyed();
 
             for (int i = 0; i < baseParameters.appearsAtTime; i++)
-                //Проверяем нужно ли ещё создавать пчёл и инициализирован ли список spawningObject
-                if (createObjects.Count < baseParameters.maxNumberObject && spawningObject.Count != 0)
+            {
+                Vector3 spawnPoint;
+                spawnPoint = SpawnPoint();
+                //Проверяем нужно ли ещё создавать пчёл и инициализирован ли список spawningObject. Проверяем занято ли место.
+                if (createObjects.Count < baseParameters.maxNumberObject && spawningObject.Count != 0 &&
+                    Physics.OverlapBox(
+                    spawnPoint,
+                    new Vector3(baseParameters.distance, baseParameters.distance, baseParameters.distance),
+                    Quaternion.identity,
+                    LayerMask.GetMask(baseParameters.neighborLayer)
+                        ).Length == 0
+                    )
                 {
                     //Выбираем из списка spawningObject какой объект создать с указанной в spawningObject вероятностью
                     int prefabIndex = ChooseIndexObject(spawningObject);
-                    GameObject generatedObject = Instantiate(spawningObject[prefabIndex].spawnObject, SpawnPoint(), Quaternion.identity);
+                    GameObject generatedObject = Instantiate(spawningObject[prefabIndex].spawnObject, spawnPoint, Quaternion.identity);
                     //Отправляем созданному объекту ссылку на создателя и prefab по которому был создан объект
                     if (generatedObject.GetComponent<IGeneratedObject>() != null)
                         generatedObject.GetComponent<IGeneratedObject>().Init(gameObject, spawningObject[prefabIndex].id);
@@ -73,7 +83,7 @@ public class SpawningDifferentObjects1 : MonoBehaviour, IState
                 }
                 else
                     OnExit();
-
+            }
             yield return new WaitForSeconds(baseParameters.time);
         }
     }

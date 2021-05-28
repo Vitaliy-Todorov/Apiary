@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2a423993dc764545b61181b832b77a6, type: 2}
   - {fileID: 11400000, guid: c251c41e69974384ea18d98b7adce5cd, type: 2}
   areaSpawning: {x: 0.5, y: 0, z: 0.5}
-  maxHoney: 1000
+  distance: 0
+  neighborLayer: 
+  maxHoney: 3000
   timeBeesGiveHoney: 3
   deathBees: {fileID: 11400000, guid: c935bd14d98f7f64dbfaac7501bca12f, type: 2}

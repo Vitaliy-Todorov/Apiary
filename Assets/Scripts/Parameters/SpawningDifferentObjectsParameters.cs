@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "SpawningDifferentObjectsParameters", menuName = "Apiary/SpawningDifferentObjectsParameters", order = 2)]
 public class SpawningDifferentObjectsParameters : ScriptableObject
 {
     [SerializeField]
@@ -15,4 +16,9 @@ public class SpawningDifferentObjectsParameters : ScriptableObject
 
     [SerializeField]
     public Vector3 areaSpawning;
+    [Header("Расстояние от центра до соседнего объекта")]
+    [SerializeField]
+    public float distance;
+    [SerializeField]
+    public string neighborLayer;
 }

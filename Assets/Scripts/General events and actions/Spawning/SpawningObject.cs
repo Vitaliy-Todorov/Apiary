@@ -38,6 +38,12 @@ public class SpawningObject : MonoBehaviour
         {
             Vector3 spawnPoint;
             spawnPoint = SpawnPoint();
+            /*Debug.Log(Physics.OverlapBox(
+                    spawnPoint,
+                    new Vector3(parameters.distance, parameters.distance, parameters.distance),
+                    Quaternion.identity,
+                    LayerMask.GetMask(parameters.neighborLayer)
+                    ).Length);*/
             //ѕровер€ем наличие соседей (соприкосновений с ними)
             if (Physics.OverlapBox(
                     spawnPoint, 

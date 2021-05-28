@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab301f9c918ef7469c7cf5008caa5d7, type: 3}
+  m_Name: flower02AndProbs
+  m_EditorClassIdentifier: 
+  id: flower02
+  spawnObject: {fileID: 9132050855640612690, guid: 07c2e8cb452170044b8153edac9b5d9f,
+    type: 3}
+  probs: 1
